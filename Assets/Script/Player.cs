@@ -8,21 +8,18 @@ public class Player : MonoBehaviour
     public int jumpPower = 1;
 
     Rigidbody2D rigid;
+    Animator ani;
+    SpriteRenderer render;
 
     bool isJumping = false;
 
     void Start()
     {
-        rigid = gameObject.GetComponent<Rigidbody2D>();
+        rigid = GetComponent<Rigidbody2D>();
+        ani = GetComponent<Animator>();
+        render = GetComponent<SpriteRenderer>();
     }
     void Update()
-    {
-        if (Input.GetButtonDown("Jump"))
-        {
-            isJumping = true;
-        }
-    }
-    void FixedUpdate()
     {
         Move();
         if(Input.GetKeyDown(KeyCode.Space) && !isJumping)
@@ -35,14 +32,21 @@ public class Player : MonoBehaviour
     {
         Vector3 moveVelocity = Vector3.zero;
 
-        if (Input.GetAxisRaw("Horizontal") < 0)
+        if (Input.GetKey(KeyCode.A))
         {
             moveVelocity = Vector3.left;
+            ani.SetBool("Walk",true);
+            render.flipX = true;
         }
-
-        else if (Input.GetAxisRaw("Horizontal") > 0)
+        else if (Input.GetKey(KeyCode.D))
         {
             moveVelocity = Vector3.right;
+            render.flipX = false;
+            ani.SetBool("Walk", true);
+        }
+        else 
+        {
+            ani.SetBool("Walk", false);
         }
 
         transform.position += moveVelocity * movePower * Time.deltaTime;

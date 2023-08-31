@@ -22,11 +22,7 @@ public class Player : MonoBehaviour
     void Update()
     {
         Move();
-        if(Input.GetKeyDown(KeyCode.Space) && !isJumping)
-        {
-            isJumping = true;
-            Jump();
-        }
+        Run();
     }
     void Move()
     {
@@ -34,13 +30,13 @@ public class Player : MonoBehaviour
 
         if (Input.GetKey(KeyCode.A))
         {
-            moveVelocity = Vector3.left;
+            transform.position += Vector3.left * movePower * Time.deltaTime;
             ani.SetBool("Walk",true);
             render.flipX = true;
         }
         else if (Input.GetKey(KeyCode.D))
         {
-            moveVelocity = Vector3.right;
+            transform.position += Vector3.right * movePower * Time.deltaTime;
             render.flipX = false;
             ani.SetBool("Walk", true);
         }
@@ -48,22 +44,16 @@ public class Player : MonoBehaviour
         {
             ani.SetBool("Walk", false);
         }
-
-        transform.position += moveVelocity * movePower * Time.deltaTime;
     }
-
-    void Jump()
+    void Run()
     {
-        rigid.velocity = Vector2.zero;
-
-        Vector2 jumpVelocity = new Vector2(0, jumpPower);
-        rigid.AddForce(jumpVelocity, ForceMode2D.Impulse);
-    }
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if(collision.gameObject.CompareTag("Floor"))
+        if(Input.GetKey(KeyCode.LeftShift))
         {
-            isJumping = false;
+            movePower = 9;
+        }
+        else
+        {
+            movePower = 3;
         }
     }
 }

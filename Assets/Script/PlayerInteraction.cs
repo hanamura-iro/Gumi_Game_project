@@ -11,6 +11,7 @@ public class PlayerInteraction : MonoBehaviour
         if(collision.CompareTag("Quest_board") && Input.GetKeyDown(KeyCode.E))
         {
             Quest_board.gameObject.SetActive(true);
+            Debug.Log("¥Í¿”");
         }
     }
     private void OnTriggerExit2D(Collider2D collision)

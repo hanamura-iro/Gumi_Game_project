@@ -24,6 +24,10 @@ public class PlayerInteraction : MonoBehaviour
     }
     private void Update()
     {
+        GetInteraction();
+    }
+    public void GetInteraction() //오브젝트 상호작용 (퀘스트 보드 등등)
+    {
         if (Input.GetKeyDown(KeyCode.E))
         {
             if (isQueest_borad)

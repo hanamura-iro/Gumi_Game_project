@@ -4,18 +4,16 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public int movePower = 1;
-    public int jumpPower = 1;
-
-    Rigidbody2D rigid;
+    public static Player Instance;
     Animator ani;
     SpriteRenderer render;
 
-    bool isJumping = false;
-
-    void Start()
+    public int movePower = 1;
+    public int jumpPower = 1;
+    private void Awake()
     {
-        rigid = GetComponent<Rigidbody2D>();
+        Instance = this;
+
         ani = GetComponent<Animator>();
         render = GetComponent<SpriteRenderer>();
     }
@@ -56,4 +54,5 @@ public class Player : MonoBehaviour
             movePower = 3;
         }
     }
+
 }

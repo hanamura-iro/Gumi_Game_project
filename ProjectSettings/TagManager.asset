@@ -6,6 +6,10 @@ TagManager:
   tags:
   - Floor
   - Quest_board
+  - Item
+  - RedPotion
+  - YellowObj
+  - LObj
   layers:
   - Default
   - TransparentFX

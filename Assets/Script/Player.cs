@@ -19,8 +19,11 @@ public class Player : MonoBehaviour
     }
     void Update()
     {
-        Move();
-        Run();
+        if(!GameManager.Instance.isMenu)
+        {
+            Move();
+            Run();
+        }
     }
     void Move()
     {

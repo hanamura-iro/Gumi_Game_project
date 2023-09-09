@@ -8,6 +8,9 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
+    public int Gold;
+    public Text Gold_Text;
+
     public Image MenuIMG;
     public bool isMenu;
 
@@ -29,6 +32,8 @@ public class GameManager : MonoBehaviour
             MenuIMG.gameObject.SetActive(false);
             Time.timeScale = 1;
         }
+
+        Gold_Text.text = Gold.ToString("N0");
     }
     public void ConBtn()
     {

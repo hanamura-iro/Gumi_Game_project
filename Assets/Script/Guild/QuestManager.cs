@@ -9,6 +9,7 @@ public class QuestManager : MonoBehaviour
     [Header("선택한 퀘스트")] public bool[] isQuest_Number; //선택한 퀘스트 번호 
     [Header("수락된 퀘스트")] public bool[] isQuest_Accept; //수락한 퀘스트 번호
 
+    public GameObject Quest_Board;
     public Text Quest_Ex_Text; //퀘스트 내용
     public Image QuestItem; //배달에 필요한 아이템
     public int Quest_Cost_Coin; //지불 해야 할 비용
@@ -180,5 +181,9 @@ public class QuestManager : MonoBehaviour
         GameManager.Instance.Gold += Overlap_Quest_Coin;
         Overlap_Quest_Coin = 0;
         Accept_Quest_Number = 0;
+    }
+    public void Close_Quest_Board()
+    {
+        Quest_Board.SetActive(false);
     }
 }

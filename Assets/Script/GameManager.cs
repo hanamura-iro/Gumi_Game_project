@@ -13,7 +13,6 @@ public class GameManager : MonoBehaviour
 
     public Image MenuIMG;
     public bool isMenu;
-
     private void Awake()
     {
         Instance = this;

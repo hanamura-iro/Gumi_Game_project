@@ -4,10 +4,8 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Floor
-  - Quest_board
-  - InventoryBox
   - Item
+  - Red_Potion
   layers:
   - Default
   - TransparentFX

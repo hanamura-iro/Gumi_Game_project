@@ -39,7 +39,7 @@ public class Inventory_Slot : MonoBehaviour, IDropHandler
     {
         if (type == Slot_Type.Hand)
         {
-            if (Inventory_Item.Drag_Item.name == "Hand")
+            if (Inventory_Item.Drag_Item.name == "Bat(Clone)" || Inventory_Item.Drag_Item.name == "Red_potionIMG(Clone)")
             {
                 Inventory_Item.Drag_Item.transform.SetParent(this.transform);
                 Inventory_Item.Drag_Item.transform.localPosition = new Vector3(0, 0, 0);
@@ -61,7 +61,7 @@ public class Inventory_Slot : MonoBehaviour, IDropHandler
     {
         if (type == Slot_Type.accessories)
         {
-            if (Inventory_Item.Drag_Item.name == "accessories")
+            if (Inventory_Item.Drag_Item.name == "Bow(Clone)")
             {
                 Inventory_Item.Drag_Item.transform.SetParent(this.transform);
                 Inventory_Item.Drag_Item.transform.localPosition = new Vector3(0, 0, 0);

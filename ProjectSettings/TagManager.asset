@@ -4,8 +4,6 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Item
-  - Red_Potion
   - Rating_Red
   - Rating_Yellow
   - Rating_Blue

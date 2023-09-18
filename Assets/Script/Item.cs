@@ -4,7 +4,9 @@ using UnityEngine;
 
 public enum Type //아이템 종류
 {
-    RedPotion
+    RedPotion,
+    bow,
+    bat
 }
 public class Item : MonoBehaviour
 {
@@ -15,8 +17,18 @@ public class Item : MonoBehaviour
         {
             if(type == Type.RedPotion)
             {
-                Inventory.Instance.Inventory_Item.Add(Inventory.Instance.Red_Potion);
-                Inventory.Instance.Set_Item(type);
+                //Inventory.Instance.Inventory_Item.Add(Inventory.Instance.Red_Potion);
+                Inventory.Instance.Set_Item(Type.RedPotion);
+                Destroy(this.gameObject);
+            }
+            if (type == Type.bow)
+            {
+                Inventory.Instance.Set_Item(Type.bow);
+                Destroy(this.gameObject);
+            }
+            if (type == Type.bat)
+            {
+                Inventory.Instance.Set_Item(Type.bat);
                 Destroy(this.gameObject);
             }
         }

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -858442123175611481}
   m_Layer: 0
   m_Name: Red_Potion
-  m_TagString: Red_Potion
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -134,7 +134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fb3dfbe6406e8e459d5df33a83ce018, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ItemPrefabs: {fileID: 7070628549499916614}
+  type: 0
 --- !u!50 &-858442123175611481
 Rigidbody2D:
   serializedVersion: 4

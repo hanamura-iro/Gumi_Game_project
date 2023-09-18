@@ -11,9 +11,22 @@ public class Inventory : MonoBehaviour
 
     [Header("아이템 이미지")]
     public Image Red_PotionIMG;
+    public Image BowIMG;
+    public Image BatIMG;
 
-    [Header("가지고 있는 아이템")]
-    public List<GameObject> Inventory_Item = new List<GameObject>();
+    [Header("아이템 스프라이트")]
+    public Sprite Red_PotionSprite;
+    public Sprite BowSprite;
+    public Sprite BatSprite;
+
+    [Header("아이템 설명 UI")]
+    public Image Item_DescriptionIMG;
+    public Image Item_IMG;
+    public Text Item_Name;
+    public Text Item_Description;
+
+    //[Header("가지고 있는 아이템")]
+    //public List<GameObject> Inventory_Item = new List<GameObject>();
 
     [Header("인벤토리 슬롯")]
     public List<GameObject> Inventory_Slot = new List<GameObject>();
@@ -33,6 +46,14 @@ public class Inventory : MonoBehaviour
                 if (type == Type.RedPotion)
                 {
                     Instantiate(Red_PotionIMG, Inventory_Slot[i].transform);
+                }
+                if (type == Type.bow)
+                {
+                    Instantiate(BowIMG, Inventory_Slot[i].transform);
+                }
+                if (type == Type.bat)
+                {
+                    Instantiate(BatIMG, Inventory_Slot[i].transform);
                 }
             }
         }

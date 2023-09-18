@@ -12,6 +12,7 @@ public class Player : MonoBehaviour
     public int jumpPower = 1;
 
     public int Hp; //기본 3칸
+    public int MaxHP;
     public int Stemina; //기본 5칸
     public int MaxStemina;
 
@@ -19,6 +20,7 @@ public class Player : MonoBehaviour
     public Sprite full_HP;
     public Sprite empty_HP;
     public Slider Stemina_Slider;
+    public Text Stemina_Text;
 
     public bool isInventory;
     public Image InventoryIMG;
@@ -46,6 +48,12 @@ public class Player : MonoBehaviour
         {
             Hp++;
             Stemina++;
+            Player_H_S_UI();
+        }
+        if(Input.GetKeyDown(KeyCode.R))
+        {
+            Hp++;
+            MaxHP++;
             Player_H_S_UI();
         }
     }
@@ -96,6 +104,19 @@ public class Player : MonoBehaviour
     }
     void Player_H_S_UI() //체력, 스테미나 UI
     {
+        if(MaxHP >= 4)
+        {
+            HP_Img[3].gameObject.SetActive(true);
+        }
+        if (MaxHP >= 5)
+        {
+            HP_Img[4].gameObject.SetActive(true);
+        }
+        if (MaxHP >= 6)
+        {
+            HP_Img[5].gameObject.SetActive(true);
+        }
+
         switch (Hp)
         {
             case 0:
@@ -129,7 +150,6 @@ public class Player : MonoBehaviour
                 }
                 break;
             case 4:
-                HP_Img[3].gameObject.SetActive(true);
                 HP_Img[0].sprite = full_HP;
                 HP_Img[1].sprite = full_HP;
                 HP_Img[2].sprite = full_HP;
@@ -139,7 +159,6 @@ public class Player : MonoBehaviour
                 HP_Img[5].sprite = empty_HP;
                 break;
             case 5:
-                HP_Img[4].gameObject.SetActive(true);
                 HP_Img[0].sprite = full_HP;
                 HP_Img[1].sprite = full_HP;
                 HP_Img[2].sprite = full_HP;
@@ -148,7 +167,6 @@ public class Player : MonoBehaviour
                 HP_Img[5].sprite = empty_HP;
                 break;
             case 6:
-                HP_Img[5].gameObject.SetActive(true);
                 for (int i = 0; i < HP_Img.Length; i++)
                 {
                     HP_Img[i].sprite = full_HP;
@@ -158,5 +176,14 @@ public class Player : MonoBehaviour
 
         Stemina_Slider.value = Stemina;
         Stemina_Slider.maxValue = MaxStemina;
+        Stemina_Text.text = Stemina + " / " + MaxStemina;
+    }
+    public void Stemina_Ui_Enter()
+    {
+        Stemina_Text.gameObject.SetActive(true);
+    }
+    public void Stemina_Ui_Exit()
+    {
+        Stemina_Text.gameObject.SetActive(false);
     }
 }

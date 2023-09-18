@@ -15,9 +15,9 @@ public class Item : MonoBehaviour
         {
             if(type == Type.RedPotion)
             {
-                //Inventory.Instance.Items.Add(Inventory.Instance.Red_potion);
-                //Inventory.Instance.Set_Inventory();
-                Destroy(gameObject);
+                Inventory.Instance.Inventory_Item.Add(Inventory.Instance.Red_Potion);
+                Inventory.Instance.Set_Item(type);
+                Destroy(this.gameObject);
             }
         }
     }

@@ -17,22 +17,32 @@ public class GameManager : MonoBehaviour
     {
         Instance = this;
     }
-    public void Update()
+    void Update()
     {
-        if(!isMenu && Input.GetKeyDown(KeyCode.Escape))
+        Menu();
+
+        Gold_Text.text = Gold.ToString("N0");
+    }
+    void Menu()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape) && !isMenu)
         {
             isMenu = true;
             MenuIMG.gameObject.SetActive(true);
             Time.timeScale = 0;
         }
-        else if(isMenu && Input.GetKeyDown(KeyCode.Escape))
+        else if (Input.GetKeyDown(KeyCode.Escape) && isMenu)
         {
             isMenu = false;
             MenuIMG.gameObject.SetActive(false);
             Time.timeScale = 1;
         }
-
-        Gold_Text.text = Gold.ToString("N0");
+    }
+    public void MenuBtn()
+    {
+        isMenu = true;
+        MenuIMG.gameObject.SetActive(true);
+        Time.timeScale = 0;
     }
     public void ConBtn()
     {

@@ -23,34 +23,32 @@ public class GameManager : MonoBehaviour
 
         Gold_Text.text = Gold.ToString("N0");
     }
-    void Menu()
+    public void Menu()
     {
         if (Input.GetKeyDown(KeyCode.Escape) && !isMenu)
         {
             isMenu = true;
-            MenuIMG.gameObject.SetActive(true);
-            Time.timeScale = 0;
+            StartCoroutine(UI_AnimationManager.instance.Move_Menu_UI());
         }
         else if (Input.GetKeyDown(KeyCode.Escape) && isMenu)
         {
             isMenu = false;
-            MenuIMG.gameObject.SetActive(false);
             Time.timeScale = 1;
+            StartCoroutine(UI_AnimationManager.instance.Move_Menu_UI());
         }
     }
     public void MenuBtn()
     {
         isMenu = true;
-        MenuIMG.gameObject.SetActive(true);
-        Time.timeScale = 0;
+        StartCoroutine(UI_AnimationManager.instance.Move_Menu_UI());
     }
     public void ConBtn()
     {
         if (isMenu)
         {
             isMenu = false;
-            MenuIMG.gameObject.SetActive(false);
             Time.timeScale = 1;
+            StartCoroutine(UI_AnimationManager.instance.Move_Menu_UI());
         }
     }
     public void Exit()

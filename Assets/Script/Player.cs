@@ -23,7 +23,6 @@ public class Player : MonoBehaviour
     public Text Stemina_Text;
 
     public bool isInventory;
-    public Image InventoryIMG;
     private void Awake()
     {
         Instance = this;
@@ -50,7 +49,7 @@ public class Player : MonoBehaviour
             Stemina++;
             Player_H_S_UI();
         }
-        if(Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.R))
         {
             Hp++;
             MaxHP++;
@@ -89,17 +88,17 @@ public class Player : MonoBehaviour
             movePower = 3;
         }
     }
-    void Player_Status()
+    void Player_Status() //플레이어 체력,스테미나,인벤토리 UI
     {
         if(!isInventory && Input.GetKeyDown(KeyCode.Tab))
         {
             isInventory = true;
-            InventoryIMG.gameObject.SetActive(true);
+            StartCoroutine(UI_AnimationManager.instance.Move_Player_StatusUI());
         }
         else if(isInventory && Input.GetKeyDown(KeyCode.Tab))
         {
             isInventory = false;
-            InventoryIMG.gameObject.SetActive(false);
+            StartCoroutine(UI_AnimationManager.instance.Move_Player_StatusUI());
         }
     }
     void Player_H_S_UI() //체력, 스테미나 UI

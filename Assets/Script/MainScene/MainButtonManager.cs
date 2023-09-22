@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class MainButtonManager : MonoBehaviour
 {
+    public static MainButtonManager Instance;
     public void StartBtn()
     {
         SceneManager.LoadScene("InGame");
@@ -15,13 +16,16 @@ public class MainButtonManager : MonoBehaviour
         Application.Quit();
     }
     #region 설정 화면  
-    public Image SettingImg;
     public bool isSetting;
 
     public Image GameSettingIMG;
     public Image SoundSettingIMG;
     public Image GraphicSettingIMG;
     public Image DevelopersIMG;
+    private void Awake()
+    {
+        Instance = this;
+    }
     public void GameSettingBtn()
     {
         GameSettingIMG.gameObject.SetActive(true);
@@ -55,12 +59,12 @@ public class MainButtonManager : MonoBehaviour
         if (!isSetting)
         {
             isSetting = true;
-            SettingImg.gameObject.SetActive(true);
+            StartCoroutine(UI_AnimationManager.instance.Move_SettingUI());
         }
         else if (isSetting)
         {
             isSetting = false;
-            SettingImg.gameObject.SetActive(false);
+            StartCoroutine(UI_AnimationManager.instance.Move_SettingUI());
         }
     }
     #endregion

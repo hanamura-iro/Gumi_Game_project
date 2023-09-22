@@ -138,7 +138,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &55122716
 RectTransform:
   m_ObjectHideFlags: 0
@@ -157,7 +157,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 50, y: 100}
+  m_AnchoredPosition: {x: 50, y: 1000}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &77762973
@@ -2764,6 +2764,7 @@ Transform:
   - {fileID: 1084539754}
   - {fileID: 675264824}
   - {fileID: 1735503518}
+  - {fileID: 1034461600}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &714549214
@@ -2971,6 +2972,7 @@ GameObject:
   - component: {fileID: 835776959}
   - component: {fileID: 835776958}
   - component: {fileID: 835776964}
+  - component: {fileID: 835776965}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -3008,7 +3010,6 @@ MonoBehaviour:
   Stemina_Slider: {fileID: 683232971}
   Stemina_Text: {fileID: 174398546}
   isInventory: 0
-  InventoryIMG: {fileID: 1050314835}
 --- !u!95 &835776959
 Animator:
   serializedVersion: 5
@@ -3206,6 +3207,19 @@ MonoBehaviour:
   - {fileID: 204095421}
   - {fileID: 636620064}
   isSet: 0
+--- !u!114 &835776965
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 835776957}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af4c52973b2b271418b63efeb8cb0250, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isTest: 0
 --- !u!1 &894376294
 GameObject:
   m_ObjectHideFlags: 0
@@ -3508,6 +3522,57 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1034461599
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1034461600}
+  - component: {fileID: 1034461601}
+  m_Layer: 0
+  m_Name: UI_Ani_Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1034461600
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1034461599}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 695237576}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1034461601
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1034461599}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddff9cfc10e95d0418d0baec09334caa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MainSettingImg: {fileID: 0}
+  Player_status: {fileID: 1050314835}
+  Quest_Board: {fileID: 55122715}
+  CurMainSettingTime: 0
+  CurMenuTime: 0
+  CurPlayerStatusTime: 0
+  CurQuestBoardTime: 0
 --- !u!1 &1045803109
 GameObject:
   m_ObjectHideFlags: 0
@@ -3525,7 +3590,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1045803110
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3545,7 +3610,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 1200}
   m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1045803111
@@ -3624,7 +3689,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -363}
+  m_AnchoredPosition: {x: 0, y: -750}
   m_SizeDelta: {x: 289, y: 59}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1050314835
@@ -7206,7 +7271,6 @@ MonoBehaviour:
   QuestIndex: 00000000000000000000000000000000000000000000000000000000
   isQuest_Number: 00000000000000
   isQuest_Accept: 00000000000000
-  Quest_Board: {fileID: 55122715}
   Quest_Ex_Text: {fileID: 1939290521}
   QuestItem: {fileID: 714549215}
   Quest_Cost_Coin: 0

@@ -11,7 +11,6 @@ public class QuestManager : MonoBehaviour
     [Header("선택한 퀘스트")] public bool[] isQuest_Number; //선택한 퀘스트 번호 
     [Header("수락된 퀘스트")] public bool[] isQuest_Accept; //수락한 퀘스트 번호
 
-    public GameObject Quest_Board;
     public Text Quest_Ex_Text; //퀘스트 내용
     public Image QuestItem; //배달에 필요한 아이템
     public int Quest_Cost_Coin; //지불 해야 할 비용
@@ -212,7 +211,9 @@ public class QuestManager : MonoBehaviour
     //}
     public void Close_Quest_Board()
     {
-        Quest_Board.SetActive(false);
+        Player_Interaction.instance.isTest = false;
+        StartCoroutine(UI_AnimationManager.instance.Move_QuestBoardUI());
+        //Quest_Board.SetActive(false);
     }
     public void Set_Item() //퀘스트 아이템 지급
     {

@@ -2,14 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UI;
-
 public class Inventory_Item : MonoBehaviour ,IBeginDragHandler, IDragHandler ,IEndDragHandler ,IPointerEnterHandler, IPointerExitHandler
 {
     public static Inventory_Item Instance;
     public Transform Inventory_Content;
 
-    public Transform Item_Inventory_Pos;
+    //public Transform Item_Inventory_Pos;
 
     CanvasGroup CG;
 
@@ -26,30 +24,50 @@ public class Inventory_Item : MonoBehaviour ,IBeginDragHandler, IDragHandler ,IE
     }
     public void OnBeginDrag(PointerEventData eventData) //드래그 시작
     {
-        Item_Inventory_Pos = transform.parent;
-        Drag_Item = this.gameObject;
-        this.transform.SetParent(Inventory_Content);
+        Debug.Log("OnBeginDrag");
+        //Item_Inventory_Pos = transform.parent;
+        transform.SetParent(Inventory_Content);
+        Drag_Item = gameObject;
         CG.blocksRaycasts = false;
     }
 
     public void OnDrag(PointerEventData eventData) //드래그 중
     {
+        Debug.Log("OnDrag");
         transform.position = Input.mousePosition;
     }
-
+    public GameObject DropItem; //드랍 할 아이템
     public void OnEndDrag(PointerEventData eventData) //드래그 종료
     {
-        Drag_Item = null;
         CG.blocksRaycasts = true;
         if (transform.parent == Inventory_Content)
         {
-            transform.SetParent(Item_Inventory_Pos);
-            transform.localPosition = new Vector3(0, 0, 0);
+            Debug.Log("OnEndDrag");
+            //transform.SetParent(Item_Inventory_Pos);
+            //transform.localPosition = new Vector3(0, 0, 0);
+
+
+            if (Drag_Item.name == "Red_potionIMG(Clone)")
+                DropItem = Instantiate(Inventory.Instance.Red_Potion);
+            if (Drag_Item.name == "BowIMG(Clone)")
+                DropItem = Instantiate(Inventory.Instance.Bow);
+            if (Drag_Item.name == "BatIMG(Clone)")
+                DropItem = Instantiate(Inventory.Instance.Bat);
+
+            if (Player.Instance.transform.localScale == new Vector3(1, 1, 1))
+                DropItem.transform.position = new Vector3(Player.Instance.transform.position.x + 1.2f, Player.Instance.transform.position.y, 0);
+            if (Player.Instance.transform.localScale == new Vector3(-1, 1, 1))
+                DropItem.transform.position = new Vector3(Player.Instance.transform.position.x - 1.2f, Player.Instance.transform.position.y, 0);
+
+            Destroy(gameObject);
         }
+        Drag_Item = null;
     }
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if(this.gameObject.name == "Red_potionIMG(Clone)")
+        Debug.Log("OnPointerEnter");
+
+        if (this.gameObject.name == "Red_potionIMG(Clone)")
         {
             Inventory.Instance.Item_DescriptionIMG.transform.position = new Vector2(Input.mousePosition.x + 215, Input.mousePosition.y + 215);
             Inventory.Instance.Item_DescriptionIMG.gameObject.SetActive(true);
@@ -77,6 +95,8 @@ public class Inventory_Item : MonoBehaviour ,IBeginDragHandler, IDragHandler ,IE
 
     public void OnPointerExit(PointerEventData eventData)
     {
+        Debug.Log("OnPointerExit");
+
         Inventory.Instance.Item_DescriptionIMG.gameObject.SetActive(false);
     }
 }

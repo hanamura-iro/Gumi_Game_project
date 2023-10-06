@@ -54,6 +54,7 @@ public class GameManager : MonoBehaviour
     public void Exit()
     {
         Time.timeScale = 1;
+        Json_DataManager.instance.SaveDataToJson();
         SceneManager.LoadScene("MainScene");
     }
 }

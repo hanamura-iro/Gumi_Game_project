@@ -8,6 +8,8 @@ public class Inventory : MonoBehaviour
     public static Inventory Instance;
     [Header("아이템 프리팹")]
     public GameObject Red_Potion;
+    public GameObject Bow;
+    public GameObject Bat;
 
     [Header("아이템 이미지")]
     public Image Red_PotionIMG;
@@ -25,11 +27,8 @@ public class Inventory : MonoBehaviour
     public Text Item_Name;
     public Text Item_Description;
 
-    //[Header("가지고 있는 아이템")]
-    //public List<GameObject> Inventory_Item = new List<GameObject>();
-
-    [Header("인벤토리 슬롯")]
-    public List<GameObject> Inventory_Slot = new List<GameObject>();
+    [Header("인벤토리 슬롯")] public List<GameObject> Inventory_Slot = new List<GameObject>();
+    [Header("가지고 있는 아이템")] public List<GameObject> Inventory_Item;
     private void Awake()
     {
         Instance = this;

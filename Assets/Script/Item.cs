@@ -11,11 +11,11 @@ public enum Type //아이템 종류
 public class Item : MonoBehaviour
 {
     public Type type;
-    private void OnTriggerEnter2D(Collider2D collision) 
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player"))
         {
-            if(type == Type.RedPotion)
+            if (type == Type.RedPotion)
             {
                 //Inventory.Instance.Inventory_Item.Add(Inventory.Instance.Red_Potion);
                 Inventory.Instance.Set_Item(Type.RedPotion);

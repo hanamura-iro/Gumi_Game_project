@@ -3018,8 +3018,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data:
-    SlotTransfrom: []
-    Slot_Item: []
+    Equip_Inventory_Item: []
+    Inventory_Item: []
+    Equip_Inventory_SlotIndex: 
+    Inventory_SlotIndex: 
 --- !u!1 &775353166
 GameObject:
   m_ObjectHideFlags: 0
@@ -3188,8 +3190,6 @@ MonoBehaviour:
   Stemina_Slider: {fileID: 683232971}
   Stemina_Text: {fileID: 174398546}
   isInventory: 0
-  InventorySlot: []
-  Slot_Item: []
 --- !u!95 &835776959
 Animator:
   serializedVersion: 5
@@ -3377,6 +3377,12 @@ MonoBehaviour:
   Item_IMG: {fileID: 1614307473}
   Item_Name: {fileID: 376255023}
   Item_Description: {fileID: 1546846906}
+  Equip_Inventory_Slot:
+  - {fileID: 1171392972}
+  - {fileID: 1323883945}
+  - {fileID: 1519639939}
+  - {fileID: 1629570517}
+  - {fileID: 366206020}
   Inventory_Slot:
   - {fileID: 1096871306}
   - {fileID: 521517288}

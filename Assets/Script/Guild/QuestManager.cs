@@ -171,11 +171,11 @@ public class QuestManager : MonoBehaviour
         isQuestion = false;
         for (int i = 0; i < isQuest_Number.Length; i++)
         {
-            if (isQuest_Number[i] && !isQuest_Accept[i] && GameManager.Instance.Gold >= Quest_Cost_Coin)
+            if (isQuest_Number[i] && !isQuest_Accept[i] && Player.Instance.Gold >= Quest_Cost_Coin)
             {
                 isQuest_Accept[i] = true;
                 Set_Item();
-                GameManager.Instance.Gold -= Quest_Cost_Coin;
+                Player.Instance.Gold -= Quest_Cost_Coin;
                 QuestIndex[i]++;
                 Accept_Quest_Number++;
                 isQuest_Number[i] = false;

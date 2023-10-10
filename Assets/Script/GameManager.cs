@@ -8,9 +8,6 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
-    public int Gold;
-    public Text Gold_Text;
-
     public Image MenuIMG;
     public bool isMenu;
     private void Awake()
@@ -20,8 +17,6 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         Menu();
-
-        Gold_Text.text = Gold.ToString("N0");
     }
     public void Menu()
     {

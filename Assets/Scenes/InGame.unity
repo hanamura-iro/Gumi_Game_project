@@ -1758,7 +1758,7 @@ Transform:
   m_GameObject: {fileID: 401723512}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.144, y: 0.37, z: 0}
+  m_LocalPosition: {x: 0.144, y: 0.4, z: 0}
   m_LocalScale: {x: 300, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2929,14 +2929,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 49c69ecedc341144c81396967348f7e6, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3019,9 +3019,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   data:
     Equip_Inventory_Item: []
-    Inventory_Item: []
     Equip_Inventory_SlotIndex: 
+    Inventory_Item: []
     Inventory_SlotIndex: 
+    PlayerGold: 0
+    PlayerHP: 0
+    PlayerMaxHP: 0
+    PlayerStemina: 0
+    PlayerMaxStemina: 0
+    Player_pos: {x: 0, y: 0, z: 0}
+    QuestIndex: 
+    isQuest_Accept: 
+    Accept_Quest_Number: 0
 --- !u!1 &775353166
 GameObject:
   m_ObjectHideFlags: 0
@@ -3178,6 +3187,8 @@ MonoBehaviour:
   MaxHP: 3
   Stemina: 5
   MaxStemina: 5
+  Gold: 0
+  Gold_Text: {fileID: 1370185444}
   HP_Img:
   - {fileID: 1109305535}
   - {fileID: 1389850453}
@@ -3243,7 +3254,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.05}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -3254,7 +3265,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.5, y: 2.1}
+  m_Size: {x: 1.5, y: 2.18}
   m_EdgeRadius: 0
 --- !u!50 &835776961
 Rigidbody2D:
@@ -3348,8 +3359,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2100246071}
   - {fileID: 162582081}
+  - {fileID: 2100246071}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &835776964
@@ -4037,8 +4048,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a48f85535f2e5b243b488eadca587ba2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Gold: 6533
-  Gold_Text: {fileID: 1370185444}
   MenuIMG: {fileID: 1045803111}
   isMenu: 0
 --- !u!1 &1093935284
@@ -8086,9 +8095,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uD018\uC2A4\uD2B8 0\n\nA\uC544\uC774\uD15C\uC744 C\uC9C0\uC5ED\uC5D0\uC11C
-    B\uC9C0\uC5ED\uAE4C\uC9C0 \uBC30\uB2EC\uC744 \uD558\uC5EC\uB77C\n\n\uD018\uC2A4\uD2B8
-    \uBE44\uC6A9 : 400\uACE8\uB4DC\n\n\uD018\uC2A4\uD2B8 \uBCF4\uC0C1 : 1000 \uACE8\uB4DC"
+  m_Text: 
 --- !u!222 &1939290522
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -8594,7 +8601,7 @@ Transform:
   m_GameObject: {fileID: 2100246068}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -8.2}
+  m_LocalPosition: {x: 0, y: 0, z: -8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

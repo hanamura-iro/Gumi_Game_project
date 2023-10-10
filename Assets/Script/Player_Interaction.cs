@@ -14,7 +14,7 @@ public class Player_Interaction : MonoBehaviour
     }
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.E))
+        if(Input.GetKeyDown(KeyCode.T))
         {
             if(isTest)
             {

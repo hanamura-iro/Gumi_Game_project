@@ -74,7 +74,7 @@ public class Inventory_Item : MonoBehaviour ,IBeginDragHandler, IDragHandler ,IE
             Inventory.Instance.Item_DescriptionIMG.transform.position = new Vector2(Input.mousePosition.x + 215, Input.mousePosition.y + 215);
             Inventory.Instance.Item_DescriptionIMG.gameObject.SetActive(true);
             Inventory.Instance.Item_IMG.sprite = Inventory.Instance.BowSprite;
-            Inventory.Instance.Item_Name.text = "활\n<color=#0000FF>B</color>등급\n판매가 : <color=#ECC041>300G</color>";
+            Inventory.Instance.Item_Name.text = "활\n<color=#00FF00>G</color>등급\n판매가 : <color=#ECC041>300G</color>";
             Inventory.Instance.Item_Description.text = "나무 활";
         }
         if (this.gameObject.name == "BatIMG(Clone)")
@@ -82,7 +82,7 @@ public class Inventory_Item : MonoBehaviour ,IBeginDragHandler, IDragHandler ,IE
             Inventory.Instance.Item_DescriptionIMG.transform.position = new Vector2(Input.mousePosition.x + 215, Input.mousePosition.y + 215);
             Inventory.Instance.Item_DescriptionIMG.gameObject.SetActive(true);
             Inventory.Instance.Item_IMG.sprite = Inventory.Instance.BatSprite;
-            Inventory.Instance.Item_Name.text = "빨강 슬라임\n<color=#FFFF00>Y</color>등급\n판매가 : <color=#ECC041>40G</color>";
+            Inventory.Instance.Item_Name.text = "나무 방망이\n<color=#FFFF00>Y</color>등급\n판매가 : <color=#ECC041>40G</color>";
             Inventory.Instance.Item_Description.text = "나무 방망이";
         }
     }

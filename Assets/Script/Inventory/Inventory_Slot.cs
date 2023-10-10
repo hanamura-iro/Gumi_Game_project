@@ -76,17 +76,17 @@ public class Inventory_Slot : MonoBehaviour, IDropHandler
         if (this.transform.childCount == 1)
         {
             Inventory_Child_Item = this.transform.GetChild(0).gameObject;
-            if (Inventory_Child_Item.CompareTag("Rating_Red"))
+            if (Inventory_Child_Item.CompareTag("Rating_Red")) //빨강 위험도 3
             {
                 Slot.color = new Color(1, 0, 0, 1);
             }
-            if (Inventory_Child_Item.CompareTag("Rating_Yellow"))
+            if (Inventory_Child_Item.CompareTag("Rating_Yellow")) //노랑 위험도 2
             {
                 Slot.color = new Color(1, 0.8f, 0, 1);
             }
-            if (Inventory_Child_Item.CompareTag("Rating_Blue"))
+            if (Inventory_Child_Item.CompareTag("Rating_Blue")) //초록 위험도 1
             {
-                Slot.color = new Color(0, 0, 1, 1);
+                Slot.color = new Color(0, 1, 0, 1);
             }
         }
     }

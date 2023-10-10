@@ -4,12 +4,12 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class MainButtonManager : MonoBehaviour
+public class SettingButtonManager : MonoBehaviour
 {
-    public static MainButtonManager Instance;
+    public static SettingButtonManager Instance;
     public void StartBtn()
     {
-        SceneManager.LoadScene("InGame");
+        LoadingScene.LoadScene(1);
     }
     public void ExitBtn()
     {
@@ -65,6 +65,7 @@ public class MainButtonManager : MonoBehaviour
         {
             isSetting = false;
             StartCoroutine(UI_AnimationManager.instance.Move_SettingUI());
+            Json_DataManager.instance.SaveDataToJson();
         }
     }
     #endregion

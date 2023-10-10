@@ -8,7 +8,6 @@ public class UI_AnimationManager : MonoBehaviour
     public static UI_AnimationManager instance;
 
     public Image MainSettingImg;
-
     public Image Player_status;
     public GameObject Quest_Board;
     void Awake()
@@ -23,14 +22,14 @@ public class UI_AnimationManager : MonoBehaviour
         CurMainSettingTime = 0f;
         while (CurMainSettingTime < 1)
         {
-            CurMainSettingTime += 0.01f;
+            CurMainSettingTime += 0.02f;
             yield return new WaitForSeconds(0.001f);
             float t = CurMainSettingTime / 1;
             t = Mathf.Sin(t * Mathf.PI * 0.5f);
 
-            if (MainButtonManager.Instance.isSetting)
+            if (SettingButtonManager.Instance.isSetting)
                 MainSettingImg.transform.localPosition = Vector2.Lerp(new Vector2(0, 1000), new Vector2(0, 0), t);
-            if (!MainButtonManager.Instance.isSetting)
+            if (!SettingButtonManager.Instance.isSetting)
                 MainSettingImg.transform.localPosition = Vector2.Lerp(new Vector2(0, 0), new Vector2(0, 1000), t);
         }
     }
@@ -42,7 +41,7 @@ public class UI_AnimationManager : MonoBehaviour
         CurMenuTime = 0f;
         while (CurMenuTime < 1)
         {
-            CurMenuTime += 0.01f;
+            CurMenuTime += 0.02f;
             yield return new WaitForSeconds(0.001f);
             float t = CurMenuTime / 1;
             t = Mathf.Sin(t * Mathf.PI * 0.5f);
@@ -54,11 +53,6 @@ public class UI_AnimationManager : MonoBehaviour
                 GameManager.Instance.MenuIMG.transform.localPosition = Vector2.Lerp(new Vector2(0, 0), new Vector2(0, 1200), t);
             }
         }
-        if(CurMenuTime >= 1)
-        {
-            if (GameManager.Instance.isMenu)
-                Time.timeScale = 0;
-        }
     }
     public float CurPlayerStatusTime;
     public IEnumerator Move_Player_StatusUI()
@@ -66,7 +60,7 @@ public class UI_AnimationManager : MonoBehaviour
         CurPlayerStatusTime = 0f;
         while (CurPlayerStatusTime < 1)
         {
-            CurPlayerStatusTime += 0.01f;
+            CurPlayerStatusTime += 0.02f;
             yield return new WaitForSeconds(0.001f);
             float t = CurPlayerStatusTime / 1;
             t = Mathf.Sin(t * Mathf.PI * 0.5f);
@@ -83,7 +77,7 @@ public class UI_AnimationManager : MonoBehaviour
         CurQuestBoardTime = 0f;
         while (CurQuestBoardTime < 1)
         {
-            CurQuestBoardTime += 0.01f;
+            CurQuestBoardTime += 0.02f;
             yield return new WaitForSeconds(0.001f);
             float t = CurQuestBoardTime / 1;
             t = Mathf.Sin(t * Mathf.PI * 0.5f);

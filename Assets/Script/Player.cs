@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.Eventing.Reader;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Player : MonoBehaviour
@@ -8,13 +10,17 @@ public class Player : MonoBehaviour
     public static Player Instance;
     Animator ani;
 
+    [Header("플레이어 스탯")]
     public int movePower = 1;
     public int jumpPower = 1;
-
     public int Hp; //기본 3칸
     public int MaxHP;
     public int Stemina; //기본 5칸
     public int MaxStemina;
+
+    [Header("플레이어의 돈")]
+    public int Gold;
+    public Text Gold_Text;
 
     public Image[] HP_Img;
     public Sprite full_HP;
@@ -29,9 +35,17 @@ public class Player : MonoBehaviour
 
         ani = GetComponent<Animator>();
     }
+    private void Start()
+    {
+        if (SceneManager.GetActiveScene().name == "Dragon")
+        {
+            transform.position = new Vector3(-17, 2, 30);
+        }
+    }
     void Update()
     {
-        if(!GameManager.Instance.isMenu)
+        Gold_Text.text = Gold.ToString("N0");
+        if (!GameManager.Instance.isMenu)
         {
             Move();
             Run();
@@ -55,16 +69,22 @@ public class Player : MonoBehaviour
             MaxHP++;
             Player_H_S_UI();
         }
+        if (Input.GetKeyDown(KeyCode.V))
+        {
+            Json_DataManager.instance.ResetDataToJson();
+        }
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            Json_DataManager.instance.SaveDataToJson();
+        }
     }
     void Move()
     {
-        Vector3 moveVelocity = Vector3.zero;
-
         if (Input.GetKey(KeyCode.A))
         {
             transform.position += Vector3.left * movePower * Time.deltaTime;
             ani.SetBool("Walk",true);
-            transform.localScale = new Vector3(-1, 1,1);
+            transform.localScale = new Vector3(-1, 1, 1);
         }
         else if (Input.GetKey(KeyCode.D))
         {
@@ -101,7 +121,7 @@ public class Player : MonoBehaviour
             StartCoroutine(UI_AnimationManager.instance.Move_Player_StatusUI());
         }
     }
-    void Player_H_S_UI() //체력, 스테미나 UI
+    public void Player_H_S_UI() //체력, 스테미나 UI
     {
         if(MaxHP >= 4)
         {

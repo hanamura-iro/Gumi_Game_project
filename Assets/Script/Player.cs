@@ -41,10 +41,6 @@ public class Player : MonoBehaviour
         {
             transform.position = new Vector3(-17, 2, 30);
         }
-        else
-        {
-            transform.position = new Vector3(0, 2, 0);
-        }
     }
     void Update()
     {
@@ -72,6 +68,10 @@ public class Player : MonoBehaviour
             Hp++;
             MaxHP++;
             Player_H_S_UI();
+        }
+        if (Input.GetKeyDown(KeyCode.V))
+        {
+            Json_DataManager.instance.ResetDataToJson();
         }
     }
     void Move()

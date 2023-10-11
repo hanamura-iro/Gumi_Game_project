@@ -65,6 +65,7 @@ public class SettingButtonManager : MonoBehaviour
         {
             isSetting = false;
             StartCoroutine(UI_AnimationManager.instance.Move_SettingUI());
+            Json_DataManager.instance.SaveDataToJson();
         }
     }
     #endregion

@@ -43,13 +43,6 @@ public class Json_DataManager : MonoBehaviour
         instance = this;
         LoadDataToJson();
     }
-    private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.V))
-        {
-            ResetDataToJson();
-        }
-    }
     [ContextMenu("Reset Json Data")]
     public void ResetDataToJson()
     {
@@ -79,11 +72,11 @@ public class Json_DataManager : MonoBehaviour
         }
         data.Accept_Quest_Number = 0;
 
-        LoadingScene.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        //LoadingScene.LoadScene("Game");
         string GameData = JsonUtility.ToJson(data, true);
         string path = Path.Combine(Application.persistentDataPath, "Gamedata.json");
         File.WriteAllText(path, GameData);
+
+        LoadingScene.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
     [ContextMenu("To Json Data")]
     public void SaveDataToJson()

@@ -30,7 +30,7 @@ public class Player_Interaction : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(Input.GetKeyDown(KeyCode.E))
+        if(Input.GetKeyDown(KeyCode.F))
         {
             if(collision.CompareTag("Quest_Board"))
             {

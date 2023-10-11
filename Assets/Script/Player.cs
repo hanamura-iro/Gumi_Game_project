@@ -73,6 +73,10 @@ public class Player : MonoBehaviour
         {
             Json_DataManager.instance.ResetDataToJson();
         }
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            Json_DataManager.instance.SaveDataToJson();
+        }
     }
     void Move()
     {

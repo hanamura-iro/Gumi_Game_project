@@ -63,7 +63,7 @@ public class Json_DataManager : MonoBehaviour
         data.PlayerStemina = 5;
         data.PlayerMaxStemina = 5;
 
-        data.Player_pos = new Vector3(0,2,0);
+        data.Player_pos = new Vector3(0, 2, 0);
 
         for (int i = 0; i < 7; i++)
         {
@@ -73,7 +73,7 @@ public class Json_DataManager : MonoBehaviour
         data.Accept_Quest_Number = 0;
 
         string GameData = JsonUtility.ToJson(data, true);
-        string path = Path.Combine(Application.persistentDataPath, "Gamedata.json");
+        string path = Path.Combine(Application.persistentDataPath, "GameData.json");
         File.WriteAllText(path, GameData);
 
         LoadingScene.LoadScene(SceneManager.GetActiveScene().buildIndex);
@@ -89,9 +89,8 @@ public class Json_DataManager : MonoBehaviour
         data.isCameraAction = SettingManager.Instance.isCameraAction;
         data.CameraSmoothIndex = SettingManager.Instance.CameraSmoothIndex;
 
-        if(Player.Instance != null)
+        if (Player.Instance != null)
         {
-            Debug.Log("플레이어 있음");
             for (int i = 0; i < Inventory.Instance.Equip_Inventory_Slot.Count; i++)
             {
                 if (Inventory.Instance.Equip_Inventory_Slot[i].transform.childCount == 1)
@@ -103,7 +102,7 @@ public class Json_DataManager : MonoBehaviour
             }
             for (int i = 0; i < Inventory.Instance.Inventory_Slot.Count; i++)
             {
-                if (Inventory.Instance.Inventory_Slot[i].transform.childCount ==1)
+                if (Inventory.Instance.Inventory_Slot[i].transform.childCount == 1)
                 {
                     Debug.Log("0" + i);
                     data.Inventory_Item.Add(Inventory.Instance.Inventory_Slot[i].transform.GetChild(0).gameObject.name);
@@ -129,7 +128,7 @@ public class Json_DataManager : MonoBehaviour
         }
 
         string GameData = JsonUtility.ToJson(data, true);
-        string path = Path.Combine(Application.persistentDataPath, "Gamedata.json");
+        string path = Path.Combine(Application.persistentDataPath, "GameData.json");
         File.WriteAllText(path, GameData);
         PlayerPrefs.Save();
         Debug.Log("저장 완료");
@@ -138,7 +137,7 @@ public class Json_DataManager : MonoBehaviour
     [ContextMenu("From Json Data")]
     public void LoadDataToJson()
     {
-        string path = Path.Combine(Application.persistentDataPath, "Gamedata.json");
+        string path = Path.Combine(Application.persistentDataPath, "GameData.json");
         string Data = File.ReadAllText(path);
         data = JsonUtility.FromJson<Data>(Data);
 
@@ -146,7 +145,7 @@ public class Json_DataManager : MonoBehaviour
         SettingManager.Instance.CameraSmoothIndex = data.CameraSmoothIndex;
         SettingManager.Instance.CameraSmoothIndexText.text = data.CameraSmoothIndex + "";
         SettingManager.Instance.CameraActionToggle.SetIsOnWithoutNotify(data.isCameraAction);
-        if(data.isCameraAction)
+        if (data.isCameraAction)
         {
             SettingManager.Instance.SmoothSetting.SetActive(true);
         }
@@ -174,7 +173,6 @@ public class Json_DataManager : MonoBehaviour
             QuestManager.Instance.Accept_Quest_Number = data.Accept_Quest_Number;
         }
         Debug.Log("로드 완료");
-        SaveDataToJson();
     }
     void LoadItem()
     {

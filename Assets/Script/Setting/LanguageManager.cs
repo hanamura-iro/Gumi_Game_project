@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MainLanguageManager : MonoBehaviour
+public class LanguageManager : MonoBehaviour
 {
     #region 메인화면
     [Header("메인화면")]

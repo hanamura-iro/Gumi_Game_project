@@ -28,7 +28,12 @@ public class GameManager : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.Escape) && isMenu)
         {
             isMenu = false;
-            Time.timeScale = 1;
+            //Time.timeScale = 1;
+            if(SettingButtonManager.Instance.isSetting)
+            {
+                SettingButtonManager.Instance.isSetting = false;
+                StartCoroutine(UI_AnimationManager.instance.Move_SettingUI());
+            }
             StartCoroutine(UI_AnimationManager.instance.Move_Menu_UI());
         }
     }
@@ -42,14 +47,20 @@ public class GameManager : MonoBehaviour
         if (isMenu)
         {
             isMenu = false;
-            Time.timeScale = 1;
+            //Time.timeScale = 1;
+            if (SettingButtonManager.Instance.isSetting)
+            {
+                SettingButtonManager.Instance.isSetting = false;
+                StartCoroutine(UI_AnimationManager.instance.Move_SettingUI());
+            }
             StartCoroutine(UI_AnimationManager.instance.Move_Menu_UI());
         }
     }
     public void Exit()
     {
-        Time.timeScale = 1;
-        Json_DataManager.instance.SaveDataToJson();
+        //Time.timeScale = 1;
+        if(Json_DataManager.instance != null)
+            Json_DataManager.instance.SaveDataToJson();
         SceneManager.LoadScene("MainScene");
     }
 }

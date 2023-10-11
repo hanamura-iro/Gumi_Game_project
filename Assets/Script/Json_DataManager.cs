@@ -8,6 +8,10 @@ using UnityEngine.SceneManagement;
 [Serializable]
 public class Data
 {
+    #region Setting
+    public int CameraSmoothIndex;
+    public bool isCameraAction;
+    #endregion 
     public List<string> Equip_Inventory_Item;
     public List<int> Equip_Inventory_SlotIndex = new List<int>();
 
@@ -28,6 +32,7 @@ public class Data
     public bool[] isQuest_Accept = { false, false, false, false, false, false, false }; //수락 된 퀘스트 
     public int Accept_Quest_Number; //수락한 퀘스트 개수 
 }
+
 [Serializable]
 public class Json_DataManager : MonoBehaviour
 {
@@ -38,9 +43,19 @@ public class Json_DataManager : MonoBehaviour
         instance = this;
         LoadDataToJson();
     }
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.V))
+        {
+            ResetDataToJson();
+        }
+    }
     [ContextMenu("Reset Json Data")]
     public void ResetDataToJson()
     {
+        data.CameraSmoothIndex = 1;
+        data.isCameraAction = false;
+
         data.Equip_Inventory_Item = new List<string>();
         data.Equip_Inventory_SlotIndex = new List<int>();
 
@@ -64,7 +79,7 @@ public class Json_DataManager : MonoBehaviour
         }
         data.Accept_Quest_Number = 0;
 
-        SceneManager.LoadScene("InGame");
+        LoadingScene.LoadScene(SceneManager.GetActiveScene().buildIndex);
         //LoadingScene.LoadScene("Game");
         string GameData = JsonUtility.ToJson(data, true);
         string path = Path.Combine(Application.persistentDataPath, "Gamedata.json");
@@ -73,39 +88,52 @@ public class Json_DataManager : MonoBehaviour
     [ContextMenu("To Json Data")]
     public void SaveDataToJson()
     {
-        ResetDataToJson();
-        for (int i = 0; i < Inventory.Instance.Inventory_Slot.Count; i++)
+        data.Equip_Inventory_Item = new List<string>();
+        data.Equip_Inventory_SlotIndex = new List<int>();
+        data.Inventory_Item = new List<string>();
+        data.Inventory_SlotIndex = new List<int>();
+
+        data.isCameraAction = SettingManager.Instance.isCameraAction;
+        data.CameraSmoothIndex = SettingManager.Instance.CameraSmoothIndex;
+
+        if(Player.Instance != null)
         {
-            if (Inventory.Instance.Inventory_Slot[i].transform.childCount == 1)
+            Debug.Log("플레이어 있음");
+            for (int i = 0; i < Inventory.Instance.Equip_Inventory_Slot.Count; i++)
             {
-                data.Inventory_Item.Add(Inventory.Instance.Inventory_Slot[i].transform.GetChild(0).gameObject.name);
-                data.Inventory_SlotIndex.Add(i);
+                if (Inventory.Instance.Equip_Inventory_Slot[i].transform.childCount == 1)
+                {
+                    Debug.Log("1" + i);
+                    data.Equip_Inventory_Item.Add(Inventory.Instance.Equip_Inventory_Slot[i].transform.GetChild(0).gameObject.name);
+                    data.Equip_Inventory_SlotIndex.Add(i);
+                }
             }
-        }
-        for (int i = 0; i < Inventory.Instance.Equip_Inventory_Slot.Count; i++)
-        {
-            if (Inventory.Instance.Equip_Inventory_Slot[i].transform.childCount == 1)
+            for (int i = 0; i < Inventory.Instance.Inventory_Slot.Count; i++)
             {
-                data.Equip_Inventory_Item.Add(Inventory.Instance.Equip_Inventory_Slot[i].transform.GetChild(0).gameObject.name);
-                data.Equip_Inventory_SlotIndex.Add(i);
+                if (Inventory.Instance.Inventory_Slot[i].transform.childCount ==1)
+                {
+                    Debug.Log("0" + i);
+                    data.Inventory_Item.Add(Inventory.Instance.Inventory_Slot[i].transform.GetChild(0).gameObject.name);
+                    data.Inventory_SlotIndex.Add(i);
+                }
             }
+            data.PlayerGold = Player.Instance.Gold;
+
+            data.PlayerHP = Player.Instance.Hp;
+            data.PlayerMaxHP = Player.Instance.MaxHP;
+
+            data.PlayerStemina = Player.Instance.Stemina;
+            data.PlayerMaxStemina = Player.Instance.MaxStemina;
+
+            data.Player_pos = Player.Instance.transform.position;
+
+            for (int i = 0; i < 7; i++)
+            {
+                data.QuestIndex[i] = QuestManager.Instance.QuestIndex[i];
+                data.isQuest_Accept[i] = QuestManager.Instance.isQuest_Accept[i];
+            }
+            data.Accept_Quest_Number = QuestManager.Instance.Accept_Quest_Number;
         }
-        data.PlayerGold = Player.Instance.Gold;
-
-        data.PlayerHP = Player.Instance.Hp;
-        data.PlayerMaxHP = Player.Instance.MaxHP;
-
-        data.PlayerStemina = Player.Instance.Stemina;
-        data.PlayerMaxStemina = Player.Instance.MaxStemina;
-
-        data.Player_pos = Player.Instance.transform.position;
-
-        for (int i = 0; i < 7; i++)
-        {
-            data.QuestIndex[i] = QuestManager.Instance.QuestIndex[i];
-            data.isQuest_Accept[i] = QuestManager.Instance.isQuest_Accept[i];
-        }
-        data.Accept_Quest_Number = QuestManager.Instance.Accept_Quest_Number;
 
         string GameData = JsonUtility.ToJson(data, true);
         string path = Path.Combine(Application.persistentDataPath, "Gamedata.json");
@@ -120,27 +148,35 @@ public class Json_DataManager : MonoBehaviour
         string path = Path.Combine(Application.persistentDataPath, "Gamedata.json");
         string Data = File.ReadAllText(path);
         data = JsonUtility.FromJson<Data>(Data);
-        
-        LoadItem();
 
-        Player.Instance.Gold = data.PlayerGold;
+        SettingManager.Instance.isCameraAction = data.isCameraAction;
+        SettingManager.Instance.CameraSmoothIndex = data.CameraSmoothIndex;
+        SettingManager.Instance.CameraSmoothIndexText.text = data.CameraSmoothIndex + "";
+        SettingManager.Instance.CameraActionToggle.SetIsOnWithoutNotify(data.isCameraAction);
 
-        Player.Instance.Hp = data.PlayerHP;
-        Player.Instance.MaxHP = data.PlayerMaxHP;
-
-        Player.Instance.Stemina = data.PlayerStemina;
-        Player.Instance.MaxStemina = data.PlayerMaxStemina;
-        Player.Instance.Player_H_S_UI();
-
-        Player.Instance.transform.position = data.Player_pos;
-
-        for (int i = 0; i < 7; i++)
+        if (Player.Instance != null)
         {
-            QuestManager.Instance.QuestIndex[i] = data.QuestIndex[i];
-            QuestManager.Instance.isQuest_Accept[i] = data.isQuest_Accept[i];
-        }
-        QuestManager.Instance.Accept_Quest_Number = data.Accept_Quest_Number;
+            Debug.Log("플레이어 있음");
+            LoadItem();
 
+            Player.Instance.Gold = data.PlayerGold;
+
+            Player.Instance.Hp = data.PlayerHP;
+            Player.Instance.MaxHP = data.PlayerMaxHP;
+
+            Player.Instance.Stemina = data.PlayerStemina;
+            Player.Instance.MaxStemina = data.PlayerMaxStemina;
+            Player.Instance.Player_H_S_UI();
+
+            Player.Instance.transform.position = data.Player_pos;
+
+            for (int i = 0; i < 7; i++)
+            {
+                QuestManager.Instance.QuestIndex[i] = data.QuestIndex[i];
+                QuestManager.Instance.isQuest_Accept[i] = data.isQuest_Accept[i];
+            }
+            QuestManager.Instance.Accept_Quest_Number = data.Accept_Quest_Number;
+        }
         Debug.Log("로드 완료");
     }
     void LoadItem()

@@ -80,20 +80,12 @@ public class Player : MonoBehaviour
         {
             transform.position += Vector3.left * movePower * Time.deltaTime;
             ani.SetBool("Walk",true);
-
-            if (SceneManager.GetActiveScene().name == "Dragon")
-                transform.localScale = new Vector3(-0.5f, 0.5f,0.5f);
-            else
-                transform.localScale = new Vector3(-1, 1, 1);
+            transform.localScale = new Vector3(-1, 1, 1);
         }
         else if (Input.GetKey(KeyCode.D))
         {
             transform.position += Vector3.right * movePower * Time.deltaTime;
-
-            if (SceneManager.GetActiveScene().name == "Dragon")
-                transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
-            else
-                transform.localScale = new Vector3(1, 1, 1);
+            transform.localScale = new Vector3(1, 1, 1);
             ani.SetBool("Walk", true);
         }
         else 

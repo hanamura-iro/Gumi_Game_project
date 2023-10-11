@@ -8,7 +8,6 @@ public class UI_AnimationManager : MonoBehaviour
     public static UI_AnimationManager instance;
 
     public Image MainSettingImg;
-
     public Image Player_status;
     public GameObject Quest_Board;
     void Awake()
@@ -28,9 +27,9 @@ public class UI_AnimationManager : MonoBehaviour
             float t = CurMainSettingTime / 1;
             t = Mathf.Sin(t * Mathf.PI * 0.5f);
 
-            if (MainButtonManager.Instance.isSetting)
+            if (SettingButtonManager.Instance.isSetting)
                 MainSettingImg.transform.localPosition = Vector2.Lerp(new Vector2(0, 1000), new Vector2(0, 0), t);
-            if (!MainButtonManager.Instance.isSetting)
+            if (!SettingButtonManager.Instance.isSetting)
                 MainSettingImg.transform.localPosition = Vector2.Lerp(new Vector2(0, 0), new Vector2(0, 1000), t);
         }
     }
@@ -54,11 +53,11 @@ public class UI_AnimationManager : MonoBehaviour
                 GameManager.Instance.MenuIMG.transform.localPosition = Vector2.Lerp(new Vector2(0, 0), new Vector2(0, 1200), t);
             }
         }
-        if(CurMenuTime >= 1)
-        {
-            if (GameManager.Instance.isMenu)
-                Time.timeScale = 0;
-        }
+        //if(CurMenuTime >= 1)
+        //{
+        //    if (GameManager.Instance.isMenu)
+        //        Time.timeScale = 0;
+        //}
     }
     public float CurPlayerStatusTime;
     public IEnumerator Move_Player_StatusUI()

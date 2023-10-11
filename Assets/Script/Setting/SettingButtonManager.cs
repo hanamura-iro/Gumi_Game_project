@@ -4,12 +4,12 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class MainButtonManager : MonoBehaviour
+public class SettingButtonManager : MonoBehaviour
 {
-    public static MainButtonManager Instance;
+    public static SettingButtonManager Instance;
     public void StartBtn()
     {
-        SceneManager.LoadScene("InGame");
+        LoadingScene.LoadScene(1);
     }
     public void ExitBtn()
     {

@@ -47,7 +47,7 @@ public class Json_DataManager : MonoBehaviour
     public void ResetDataToJson()
     {
         data.CameraSmoothIndex = 1;
-        data.isCameraAction = false;
+        data.isCameraAction = true;
 
         data.Equip_Inventory_Item = new List<string>();
         data.Equip_Inventory_SlotIndex = new List<int>();
@@ -146,7 +146,10 @@ public class Json_DataManager : MonoBehaviour
         SettingManager.Instance.CameraSmoothIndex = data.CameraSmoothIndex;
         SettingManager.Instance.CameraSmoothIndexText.text = data.CameraSmoothIndex + "";
         SettingManager.Instance.CameraActionToggle.SetIsOnWithoutNotify(data.isCameraAction);
-
+        if(data.isCameraAction)
+        {
+            SettingManager.Instance.SmoothSetting.SetActive(true);
+        }
         if (Player.Instance != null)
         {
             Debug.Log("플레이어 있음");
@@ -171,6 +174,7 @@ public class Json_DataManager : MonoBehaviour
             QuestManager.Instance.Accept_Quest_Number = data.Accept_Quest_Number;
         }
         Debug.Log("로드 완료");
+        SaveDataToJson();
     }
     void LoadItem()
     {

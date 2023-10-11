@@ -2927,7 +2927,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &969035743
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6010,6 +6010,7 @@ MonoBehaviour:
   CameraSmoothIndex: 1
   CameraSmoothIndexText: {fileID: 238584773}
   isCameraAction: 0
+  SmoothSetting: {fileID: 969035742}
 --- !u!1 &1667810106
 GameObject:
   m_ObjectHideFlags: 0

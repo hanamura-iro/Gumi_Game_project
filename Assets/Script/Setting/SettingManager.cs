@@ -7,11 +7,6 @@ using UnityEngine.UI;
 public class SettingManager : MonoBehaviour
 {
     public static SettingManager Instance;
-
-    public Toggle CameraActionToggle;
-    public int CameraSmoothIndex;
-    public Text CameraSmoothIndexText;
-    public bool isCameraAction;
     #region 언어 설정
     private void Awake()
     {
@@ -35,16 +30,23 @@ public class SettingManager : MonoBehaviour
     }
     #endregion
     #region 카메라 설정
+    public Toggle CameraActionToggle;
+    public int CameraSmoothIndex;
+    public Text CameraSmoothIndexText;
+    public bool isCameraAction;
+    public GameObject SmoothSetting;
     public void CameraAction()
     {
         if (isCameraAction)
         {
             isCameraAction = false;
+            SmoothSetting.SetActive(false);
             CameraActionToggle.SetIsOnWithoutNotify(isCameraAction);
         }
         else if (!isCameraAction)
         {
             isCameraAction = true;
+            SmoothSetting.SetActive(true);
             CameraActionToggle.SetIsOnWithoutNotify(isCameraAction);
         }
     }

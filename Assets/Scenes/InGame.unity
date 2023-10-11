@@ -10054,6 +10054,7 @@ MonoBehaviour:
   CameraSmoothIndex: 0
   CameraSmoothIndexText: {fileID: 1312981113}
   isCameraAction: 0
+  SmoothSetting: {fileID: 1772490205}
 --- !u!114 &1525104237
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12000,7 +12001,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1772490206
 RectTransform:
   m_ObjectHideFlags: 0

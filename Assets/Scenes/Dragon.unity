@@ -480,6 +480,7 @@ MonoBehaviour:
   CameraSmoothIndex: 0
   CameraSmoothIndexText: {fileID: 6666159439807998375}
   isCameraAction: 0
+  SmoothSetting: {fileID: 3369645340473412515}
 --- !u!1 &538661307
 GameObject:
   m_ObjectHideFlags: 0
@@ -4208,7 +4209,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!222 &3380450703160194183
 CanvasRenderer:
   m_ObjectHideFlags: 0

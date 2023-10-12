@@ -102,6 +102,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   isEat: 0
+  isCollision: 0
 --- !u!50 &-858442123175611481
 Rigidbody2D:
   serializedVersion: 4

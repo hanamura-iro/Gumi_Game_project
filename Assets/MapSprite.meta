@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/MapSprite.meta
 guid: e8ba7db2abb20a8488fb1c6ee7aac662
+========
+guid: 5909ef9c307b8fe4eb86e24f4e543db3
+>>>>>>>> 8b530c5de6dd55678dc945a88204a56600ebce38:Assets/Script/Dragon.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

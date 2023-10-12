@@ -66,14 +66,16 @@ public class UI_AnimationManager : MonoBehaviour
             t = Mathf.Sin(t * Mathf.PI * 0.5f);
 
             if(Player.Instance.isInventory)
-                Player_status.transform.localPosition = Vector2.Lerp(new Vector2(0, -750), new Vector2(0, -363), t);
+                Player_status.transform.localPosition = Vector2.Lerp(new Vector2(0, -750), new Vector2(0, -345), t);
             if(!Player.Instance.isInventory)
-                Player_status.transform.localPosition = Vector2.Lerp(new Vector2(0, -363), new Vector2(0, -750), t);
+                Player_status.transform.localPosition = Vector2.Lerp(new Vector2(0, -345), new Vector2(0, -750), t);
         }
     }
     public float CurQuestBoardTime;
+    public Image QuestBorade_BG_IMG;
     public IEnumerator Move_QuestBoardUI()
     {
+        QuestBorade_BG_IMG.gameObject.SetActive(false);
         CurQuestBoardTime = 0f;
         while (CurQuestBoardTime < 1)
         {
@@ -83,9 +85,21 @@ public class UI_AnimationManager : MonoBehaviour
             t = Mathf.Sin(t * Mathf.PI * 0.5f);
 
             if (Player_Interaction.instance.isTest)
-                Quest_Board.transform.localPosition = Vector2.Lerp(new Vector2(0,1000),new Vector2(0f,0f),t);
-            if (!Player_Interaction.instance.isTest) 
-                Quest_Board.transform.localPosition = Vector2.Lerp(new Vector2(0,0),new Vector2(0,1000), t);
+            {
+                Quest_Board.transform.localPosition = Vector2.Lerp(new Vector2(0,1000),new Vector2(0f,195f),t);
+                if (CurQuestBoardTime >= 1)
+                {
+                    QuestBorade_BG_IMG.gameObject.SetActive(true);
+                }
+            }
+            if (!Player_Interaction.instance.isTest)
+            {
+                Quest_Board.transform.localPosition = Vector2.Lerp(new Vector2(0,195f),new Vector2(0,1000), t);
+                if (CurQuestBoardTime <= 0)
+                {
+                    QuestBorade_BG_IMG.gameObject.SetActive(false);
+                }
+            }
         }
     }
     #endregion

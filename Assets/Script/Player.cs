@@ -51,7 +51,8 @@ public class Player : MonoBehaviour
             Run();
             Player_Status();
         }
-        if(Input.GetKeyDown(KeyCode.Q) && Hp > 0)
+        #region 게임 낼 때 지워야 할 것
+        if (Input.GetKeyDown(KeyCode.Q) && Hp > 0)
         {
             Hp--;
             Stemina--;
@@ -77,6 +78,7 @@ public class Player : MonoBehaviour
         {
             Json_DataManager.instance.SaveDataToJson();
         }
+        #endregion
     }
     void Move()
     {

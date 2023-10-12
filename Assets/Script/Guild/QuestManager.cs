@@ -187,11 +187,6 @@ public class QuestManager : MonoBehaviour
                 NullSlotCount++;
             }
         }
-        if(NullSlotCount < GiveItemCount)
-        {
-            InventorySlotTribe.text = "인벤토리 공간 부족";
-            Invoke("InventorySlotTribeText", 1.5f);
-        }
         if(NullSlotCount >= GiveItemCount)
         {
             for (int i = 0; i < isQuest_Number.Length; i++)
@@ -210,10 +205,6 @@ public class QuestManager : MonoBehaviour
             }
         }
         Quest_Re_questionIMG.gameObject.SetActive(false);
-    }
-    void InventorySlotTribeText()
-    {
-        InventorySlotTribe.text = "";
     }
     //public void Reject_Quest()
     //{

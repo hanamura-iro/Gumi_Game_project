@@ -44,16 +44,29 @@ public class Inventory_Item : MonoBehaviour ,IBeginDragHandler, IDragHandler ,IE
             //transform.localPosition = new Vector3(0, 0, 0);
 
             if (Drag_Item.name == "Red_potionIMG(Clone)")
+            {
                 DropItem = Instantiate(Inventory.Instance.Red_Potion);
+                DropItem.GetComponent<Item>().isDrop = true;
+            }
             if (Drag_Item.name == "BowIMG(Clone)")
+            {
                 DropItem = Instantiate(Inventory.Instance.Bow);
+                DropItem.GetComponent<Item>().isDrop = true;
+            }
             if (Drag_Item.name == "BatIMG(Clone)")
+            {
                 DropItem = Instantiate(Inventory.Instance.Bat);
+                DropItem.GetComponent<Item>().isDrop = true;
+            }
 
             if (Player.Instance.transform.localScale == new Vector3(1, 1, 1))
-                DropItem.transform.position = new Vector3(Player.Instance.transform.position.x + 1.2f, Player.Instance.transform.position.y, 0);
+            {
+                DropItem.transform.position = new Vector3(Player.Instance.transform.position.x + 1f, Player.Instance.transform.position.y, 0);
+            }
             if (Player.Instance.transform.localScale == new Vector3(-1, 1, 1))
-                DropItem.transform.position = new Vector3(Player.Instance.transform.position.x - 1.2f, Player.Instance.transform.position.y, 0);
+            {
+                DropItem.transform.position = new Vector3(Player.Instance.transform.position.x - 1f, Player.Instance.transform.position.y, 0);
+            }
 
             Destroy(gameObject);
         }
@@ -92,3 +105,4 @@ public class Inventory_Item : MonoBehaviour ,IBeginDragHandler, IDragHandler ,IE
         Inventory.Instance.Item_DescriptionIMG.gameObject.SetActive(false);
     }
 }
+

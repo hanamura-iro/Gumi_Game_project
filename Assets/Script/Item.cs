@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public enum Type //아이템 종류
 {
@@ -13,11 +12,20 @@ public class Item : MonoBehaviour
 {
     public Type type;
     public bool isEat;
-    private void OnCollisionEnter2D(Collision2D collision)
+    public bool isCollision;
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if(collision.CompareTag("Player"))
         {
+            isCollision = true;
             isEat = true;
+        }
+    }
+    private void Update()
+    {
+        if(isCollision && Input.GetKeyDown(KeyCode.F))
+        {
+            isCollision = false;
             for (int i = 0; i < Inventory.Instance.Inventory_Slot.Count; i++)
             {
                 if (Inventory.Instance.Inventory_Slot[i].transform.childCount == 0 && isEat)
@@ -28,18 +36,26 @@ public class Item : MonoBehaviour
                         Inventory.Instance.Set_Item(Type.RedPotion);
                         Destroy(this.gameObject);
                     }
-                    if (type == Type.bow)
+                    else if (type == Type.bow)
                     {
                         Inventory.Instance.Set_Item(Type.bow);
                         Destroy(this.gameObject);
                     }
-                    if (type == Type.bat)
+                    else if (type == Type.bat)
                     {
                         Inventory.Instance.Set_Item(Type.bat);
                         Destroy(this.gameObject);
                     }
                 }
             }
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if(collision.CompareTag("Player"))
+        {
+            isCollision = false;
+            isEat = false;
         }
     }
 }

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.Eventing.Reader;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -21,6 +22,8 @@ public class QuestManager : MonoBehaviour
     public Sprite[] Quest_Item; //0 빨간 물약 1활 2방망이
 
     public bool isQuestion;
+    public int GiveItemCount;
+    public Text InventorySlotTribe; //아이템 슬롯 부족
     private void Awake()
     {
         Instance = this;
@@ -31,7 +34,6 @@ public class QuestManager : MonoBehaviour
         {
             if (QuestIndex[0] == 0)
             {
-                QuestItem.sprite = Quest_Item[0];
                 Quest_Cost_Coin = 300;
                 Quest_Ex_Text.text = "퀘스트 0\n\nA아이템을 C지역에서 B지역까지 배달을 하여라\n\n퀘스트 비용 : 300골드\n\n퀘스트 보상 : 500 골드";
             }
@@ -40,7 +42,9 @@ public class QuestManager : MonoBehaviour
                 isQuest_Number[i] = false;
             }
             isQuest_Number[0] = true;
+            QuestItem.sprite = Quest_Item[0];
             QuestItem.color = new Color(1, 1, 1, 1);
+            GiveItemCount = 2;
         }
     }
     public void Quest1()
@@ -49,7 +53,6 @@ public class QuestManager : MonoBehaviour
         {
             if (QuestIndex[1] == 0)
             {
-                QuestItem.sprite = Quest_Item[1];
                 Quest_Cost_Coin = 400;
                 Quest_Ex_Text.text = "퀘스트 1\n\nC아이템을 C지역에서 A지역까지 배달을 하여라\n\n퀘스트 비용 : 400골드\n\n퀘스트 보상 : 600 골드";
             }
@@ -58,7 +61,9 @@ public class QuestManager : MonoBehaviour
                 isQuest_Number[i] = false;
             }
             isQuest_Number[1] = true;
+            QuestItem.sprite = Quest_Item[1];
             QuestItem.color = new Color(1, 1, 1, 1);
+            GiveItemCount = 1;
         }
     }
     public void Quest2()
@@ -67,7 +72,6 @@ public class QuestManager : MonoBehaviour
         {
             if (QuestIndex[2] == 0)
             {
-                QuestItem.sprite = Quest_Item[2];
                 Quest_Cost_Coin = 100;
                 Quest_Ex_Text.text = "퀘스트 2\n\nA아이템을 C지역에서 B지역까지 배달을 하여라\n\n퀘스트 비용 : 100골드\n\n퀘스트 보상 : 400 골드";
             }
@@ -76,7 +80,9 @@ public class QuestManager : MonoBehaviour
                 isQuest_Number[i] = false;
             }
             isQuest_Number[2] = true;
+            QuestItem.sprite = Quest_Item[2];
             QuestItem.color = new Color(1, 1, 1, 1);
+            GiveItemCount = 1;
         }
     }
     public void Quest3()
@@ -85,7 +91,6 @@ public class QuestManager : MonoBehaviour
         {
             if (QuestIndex[3] == 0)
             {
-                QuestItem.sprite = Quest_Item[0];
                 Quest_Cost_Coin = 200;
                 Quest_Ex_Text.text = "퀘스트 3\n\nB아이템을 A지역에서 B지역까지 배달을 하여라\n\n퀘스트 비용 : 200골드\n\n퀘스트 보상 : 600 골드";
             }
@@ -94,7 +99,9 @@ public class QuestManager : MonoBehaviour
                 isQuest_Number[i] = false;
             }
             isQuest_Number[3] = true;
+            QuestItem.sprite = Quest_Item[0];
             QuestItem.color = new Color(1, 1, 1, 1);
+            GiveItemCount = 1;
         }
     }
     public void Quest4()
@@ -103,7 +110,6 @@ public class QuestManager : MonoBehaviour
         {
             if (QuestIndex[4] == 0)
             {
-                QuestItem.sprite = Quest_Item[1];
                 Quest_Cost_Coin = 400;
                 Quest_Ex_Text.text = "퀘스트 4\n\nA아이템을 C지역에서 B지역까지 배달을 하여라\n\n퀘스트 비용 : 400골드\n\n퀘스트 보상 : 600 골드";
             }
@@ -112,7 +118,9 @@ public class QuestManager : MonoBehaviour
                 isQuest_Number[i] = false;
             }
             isQuest_Number[4] = true;
+            QuestItem.sprite = Quest_Item[1];
             QuestItem.color = new Color(1, 1, 1, 1);
+            GiveItemCount = 1;
         }
     }
     public void Quest5()
@@ -121,7 +129,6 @@ public class QuestManager : MonoBehaviour
         {
             if (QuestIndex[5] == 0)
             {
-                QuestItem.sprite = Quest_Item[0];
                 Quest_Cost_Coin = 500;
                 Quest_Ex_Text.text = "퀘스트 5\n\nC아이템을 B지역에서 A지역까지 배달을 하여라\n\n퀘스트 비용 : 500골드\n\n퀘스트 보상 : 800 골드";
             }
@@ -130,7 +137,9 @@ public class QuestManager : MonoBehaviour
                 isQuest_Number[i] = false;
             }
             isQuest_Number[5] = true;
+            QuestItem.sprite = Quest_Item[0];
             QuestItem.color = new Color(1, 1, 1, 1);
+            GiveItemCount = 1;
         }
     }
     public void Quest6()
@@ -139,7 +148,6 @@ public class QuestManager : MonoBehaviour
         {
             if (QuestIndex[6] == 0)
             {
-                QuestItem.sprite = Quest_Item[2];
                 Quest_Cost_Coin += 210;
                 Quest_Ex_Text.text = "퀘스트6\n\nA아이템을 A지역에서 B지역까지 배달을 하여라\n\n퀘스트 비용 : 210골드\n\n퀘스트 보상 : 600 골드";
             }
@@ -148,7 +156,9 @@ public class QuestManager : MonoBehaviour
                 isQuest_Number[i] = false;
             }
             isQuest_Number[6] = true;
+            QuestItem.sprite = Quest_Item[2];
             QuestItem.color = new Color(1, 1, 1, 1);
+            GiveItemCount = 1;
         }
     }
     private void Update()
@@ -169,21 +179,41 @@ public class QuestManager : MonoBehaviour
     public void Quest_Accept()
     {
         isQuestion = false;
-        for (int i = 0; i < isQuest_Number.Length; i++)
+        int NullSlotCount = 0;
+        for (int i = 0; i < Inventory.Instance.Inventory_Slot.Count; i++)
         {
-            if (isQuest_Number[i] && !isQuest_Accept[i] && Player.Instance.Gold >= Quest_Cost_Coin)
+            if (Inventory.Instance.Inventory_Slot[i].transform.childCount == 0)
             {
-                isQuest_Accept[i] = true;
-                Set_Item();
-                Player.Instance.Gold -= Quest_Cost_Coin;
-                QuestIndex[i]++;
-                Accept_Quest_Number++;
-                isQuest_Number[i] = false;
-                Quest_Cost_Coin = 0;
-                //Overlap_Quest_Coin += Quest_Cost_Coin;
+                NullSlotCount++;
+            }
+        }
+        if(NullSlotCount < GiveItemCount)
+        {
+            InventorySlotTribe.text = "인벤토리 공간 부족";
+            Invoke("InventorySlotTribeText", 1.5f);
+        }
+        if(NullSlotCount >= GiveItemCount)
+        {
+            for (int i = 0; i < isQuest_Number.Length; i++)
+            {
+                if (isQuest_Number[i] && !isQuest_Accept[i] && Player.Instance.Gold >= Quest_Cost_Coin)
+                {
+                    isQuest_Accept[i] = true;
+                    Set_Item();
+                    Player.Instance.Gold -= Quest_Cost_Coin;
+                    QuestIndex[i]++;
+                    Accept_Quest_Number++;
+                    isQuest_Number[i] = false;
+                    Quest_Cost_Coin = 0;
+                    //Overlap_Quest_Coin += Quest_Cost_Coin;
+                }
             }
         }
         Quest_Re_questionIMG.gameObject.SetActive(false);
+    }
+    void InventorySlotTribeText()
+    {
+        InventorySlotTribe.text = "";
     }
     //public void Reject_Quest()
     //{

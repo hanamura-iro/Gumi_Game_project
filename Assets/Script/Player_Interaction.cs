@@ -39,12 +39,12 @@ public class Player_Interaction : MonoBehaviour
             }
         }
     }
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Quest_Board"))
-        {
-            isTest = false;
-            StartCoroutine(UI_AnimationManager.instance.Move_QuestBoardUI());
-        }
-    }
+    //private void OnTriggerExit2D(Collider2D collision)
+    //{
+    //    if (collision.CompareTag("Quest_Board"))
+    //    {
+    //        isTest = false;
+    //        StartCoroutine(UI_AnimationManager.instance.Move_QuestBoardUI());
+    //    }
+    //}
 }

@@ -66,7 +66,6 @@ public class Player : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.R))
         {
-            Hp++;
             MaxHP++;
             Player_H_S_UI();
         }

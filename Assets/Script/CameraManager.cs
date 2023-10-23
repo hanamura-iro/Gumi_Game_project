@@ -27,12 +27,12 @@ public class CameraManager : MonoBehaviour
         {
             if (SettingManager.Instance.isCameraAction)
             {
-                transform.position = Vector3.Lerp(transform.position, Player.Instance.transform.position, SettingManager.Instance.CameraSmoothIndex * Time.deltaTime);
-                transform.position = new Vector3(transform.position.x, 2, -8);
+                transform.position = Vector3.Lerp(new Vector3(transform.position.x,transform.position.y,-8),new Vector3(Player.Instance.transform.position.x,transform.position.y,-8), SettingManager.Instance.CameraSmoothIndex * Time.deltaTime);
+                transform.position = new Vector3(transform.position.x, transform.position.y, -8);
             }
             else
             {
-                transform.position = new Vector3(Player.Instance.transform.position.x, 2, -8);
+                transform.position = new Vector3(Player.Instance.transform.position.x, transform.position.y, -8);
             }
         }
     }

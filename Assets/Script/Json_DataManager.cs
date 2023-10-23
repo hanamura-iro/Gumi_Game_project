@@ -31,6 +31,9 @@ public class Data
     public int[] QuestIndex = { 0, 0, 0, 0, 0, 0, 0 }; //퀘스트 인덱스
     public bool[] isQuest_Accept = { false, false, false, false, false, false, false }; //수락 된 퀘스트 
     public int Accept_Quest_Number; //수락한 퀘스트 개수 
+
+    public List<string> Quest_Name = new List<string>();
+    public List<string> Quest_Ex = new List<string>();
 }
 
 [Serializable]
@@ -72,6 +75,9 @@ public class Json_DataManager : MonoBehaviour
         }
         data.Accept_Quest_Number = 0;
 
+        data.Quest_Name = new List<string>();
+        data.Quest_Ex = new List<string>();
+
         string GameData = JsonUtility.ToJson(data, true);
         string path = Path.Combine(Application.persistentDataPath, "GameData.json");
         File.WriteAllText(path, GameData);
@@ -81,6 +87,7 @@ public class Json_DataManager : MonoBehaviour
     [ContextMenu("To Json Data")]
     public void SaveDataToJson()
     {
+        Debug.Log("저장 시작");
         data.Equip_Inventory_Item = new List<string>();
         data.Equip_Inventory_SlotIndex = new List<int>();
         data.Inventory_Item = new List<string>();
@@ -125,6 +132,9 @@ public class Json_DataManager : MonoBehaviour
                 data.isQuest_Accept[i] = QuestManager.Instance.isQuest_Accept[i];
             }
             data.Accept_Quest_Number = QuestManager.Instance.Accept_Quest_Number;
+
+            data.Quest_Name = QuestManager.Instance.Quest_Name;
+            data.Quest_Ex = QuestManager.Instance.Quest_Ex;
         }
 
         string GameData = JsonUtility.ToJson(data, true);
@@ -171,6 +181,9 @@ public class Json_DataManager : MonoBehaviour
                 QuestManager.Instance.isQuest_Accept[i] = data.isQuest_Accept[i];
             }
             QuestManager.Instance.Accept_Quest_Number = data.Accept_Quest_Number;
+
+            QuestManager.Instance.Quest_Name = data.Quest_Name;
+            QuestManager.Instance.Quest_Ex = data.Quest_Ex;
         }
         Debug.Log("로드 완료");
     }

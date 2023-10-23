@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics.Eventing.Reader;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -45,6 +44,8 @@ public class Player : MonoBehaviour
     void Update()
     {
         Gold_Text.text = Gold.ToString("N0");
+        if(QuestManager.Instance.Quest_Name.Count >= 1)
+            Quest_Text.text = QuestManager.Instance.Quest_Name[QuestIndex] + "\n" + QuestManager.Instance.Quest_Ex[QuestIndex];
         if (!GameManager.Instance.isMenu)
         {
             Move();
@@ -115,11 +116,13 @@ public class Player : MonoBehaviour
         {
             isInventory = true;
             StartCoroutine(UI_AnimationManager.instance.Move_Player_StatusUI());
+            StartCoroutine(Move_Camera());
         }
         else if(isInventory && Input.GetKeyDown(KeyCode.Tab))
         {
             isInventory = false;
             StartCoroutine(UI_AnimationManager.instance.Move_Player_StatusUI());
+            StartCoroutine(Move_Camera());
         }
     }
     public void Player_H_S_UI() //체력, 스테미나 UI
@@ -198,6 +201,35 @@ public class Player : MonoBehaviour
         Stemina_Slider.maxValue = MaxStemina;
         Stemina_Text.text = Stemina + " / " + MaxStemina;
     }
+    public int QuestIndex;
+    public Image Quest_IMG;
+    public Text Quest_Text;
+    public Image Map_IMG;
+    public void Quest_Btn()
+    {
+        Quest_IMG.gameObject.SetActive(true);
+        Map_IMG.gameObject.SetActive(false);
+    }
+    public void QuestIndexLeft()
+    {
+        if(QuestIndex > 0 && QuestIndex < QuestManager.Instance.Quest_Name.Count)
+        {
+            QuestIndex--;
+        }
+    }
+    public void QuestIdexRight()
+    {
+        if (QuestIndex < QuestManager.Instance.Quest_Name.Count -1 && QuestIndex >= 0)
+        {
+            QuestIndex++;
+        }
+    }
+    public void Map_Btn()
+    {
+        Quest_IMG.gameObject.SetActive(false);
+        Map_IMG.gameObject.SetActive(true);
+    }
+
     public void Stemina_Ui_Enter()
     {
         Stemina_Text.gameObject.SetActive(true);
@@ -205,5 +237,25 @@ public class Player : MonoBehaviour
     public void Stemina_Ui_Exit()
     {
         Stemina_Text.gameObject.SetActive(false);
+    }
+
+    public float CurCmaeraTime;
+    public Camera cam;
+    public IEnumerator Move_Camera()
+    {
+        Debug.Log("Camera Moving");
+        CurCmaeraTime = 0f;
+        while (CurCmaeraTime < 1)
+        {
+            CurCmaeraTime += 0.02f;
+            yield return new WaitForSeconds(0.001f);
+            float t = CurCmaeraTime / 1;
+            t = Mathf.Sin(t * Mathf.PI * 0.5f);
+
+            if (isInventory)
+                cam.transform.position = Vector2.Lerp(new Vector2(cam.transform.position.x, 4.7f), new Vector2(cam.transform.position.x, 1.5f), t);
+            else if (!isInventory)
+                cam.transform.position = Vector2.Lerp(new Vector2(cam.transform.position.x, 1.5f), new Vector2(cam.transform.position.x, 4.7f), t);
+        }
     }
 }

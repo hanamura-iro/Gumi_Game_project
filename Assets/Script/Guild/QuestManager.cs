@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics.Eventing.Reader;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -24,6 +23,11 @@ public class QuestManager : MonoBehaviour
 
     public bool isQuestion;
     public int GiveItemCount;
+
+    private string QuestName;
+    private string QuestEx;
+    public List<string> Quest_Name = new List<string>();
+    public List<string> Quest_Ex = new List<string>();
     private void Awake()
     {
         Instance = this;
@@ -35,8 +39,12 @@ public class QuestManager : MonoBehaviour
             if (QuestIndex[0] == 0)
             {
                 Quest_Cost_Coin = 300;
-                Quest_NameText.text = "퀘스트A 500골드";
-                Quest_Ex_Text.text = "A아이템을 C지역에서 B지역까지 배달을 하여라\n\n퀘스트 비용 : 300골드";
+                QuestName = "퀘스트A 500골드\n";
+                //Quest_NameText.text = "\n퀘스트A 500골드\n";
+                //QuestEx = "A아이템을 C지역에서 B지역까지\n배달을 하여라\n\n퀘스트 비용 : 300골드";
+                QuestEx = "A아이템을 C지역에서 B지역까지\n배달을 하여라\n\n퀘스트 비용 : 300골드";
+                Quest_NameText.text = QuestName;
+                Quest_Ex_Text.text = QuestEx;
             }
             for (int i = 0; i < isQuest_Number.Length; i++)
             {
@@ -62,8 +70,12 @@ public class QuestManager : MonoBehaviour
             if (QuestIndex[1] == 0)
             {
                 Quest_Cost_Coin = 400;
-                Quest_NameText.text = "퀘스트B 600골드";
-                Quest_Ex_Text.text = "C아이템을 C지역에서 A지역까지 배달을 하여라\n\n퀘스트 비용 : 400골드";
+                //Quest_NameText.text = "\n퀘스트B 600골드\n";
+                //Quest_Ex_Text.text = "C아이템을 C지역에서 A지역까지\n배달을 하여라\n\n퀘스트 비용 : 400골드";
+                QuestName = "퀘스트B 600골드\n";
+                QuestEx = "C아이템을 C지역에서 A지역까지\n배달을 하여라\n\n퀘스트 비용 : 400골드";
+                Quest_NameText.text = QuestName;
+                Quest_Ex_Text.text = QuestEx;
             }
             for (int i = 0; i < isQuest_Number.Length; i++)
             {
@@ -87,8 +99,10 @@ public class QuestManager : MonoBehaviour
             if (QuestIndex[2] == 0)
             {
                 Quest_Cost_Coin = 100;
-                Quest_NameText.text = "퀘스트C 400골드";
-                Quest_Ex_Text.text = "퀘스트 2\n\nA아이템을 C지역에서 B지역까지 배달을 하여라\n\n퀘스트 비용 : 100골드";
+                QuestName = "퀘스트C 400골드\n";
+                QuestEx = "A아이템을 C지역에서 B지역까지\n배달을 하여라\n\n퀘스트 비용 : 100골드"; 
+                Quest_NameText.text = QuestName;
+                Quest_Ex_Text.text = QuestEx;
             }
             for (int i = 0; i < isQuest_Number.Length; i++)
             {
@@ -112,8 +126,10 @@ public class QuestManager : MonoBehaviour
             if (QuestIndex[3] == 0)
             {
                 Quest_Cost_Coin = 200;
-                Quest_NameText.text = "퀘스트D 600골드";
-                Quest_Ex_Text.text = "퀘스트 3\n\nB아이템을 A지역에서 B지역까지 배달을 하여라\n\n퀘스트 비용 : 200골드";
+                QuestName = "퀘스트D 600골드\n";
+                QuestEx = "B아이템을 A지역에서 B지역까지\n배달을 하여라\n\n퀘스트 비용 : 200골드"; 
+                Quest_NameText.text = QuestName;
+                Quest_Ex_Text.text = QuestEx;
             }
             for (int i = 0; i < isQuest_Number.Length; i++)
             {
@@ -137,8 +153,10 @@ public class QuestManager : MonoBehaviour
             if (QuestIndex[4] == 0)
             {
                 Quest_Cost_Coin = 400;
-                Quest_NameText.text = "퀘스트E 600골드";
-                Quest_Ex_Text.text = "퀘스트 4\n\nA아이템을 C지역에서 B지역까지 배달을 하여라\n\n퀘스트 비용 : 400골드";
+                QuestName = "퀘스트E 600골드\n";
+                QuestEx = "A아이템을 C지역에서 B지역까지\n배달을 하여라\n\n퀘스트 비용 : 400골드";
+                Quest_NameText.text = QuestName;
+                Quest_Ex_Text.text = QuestEx;
             }
             for (int i = 0; i < isQuest_Number.Length; i++)
             {
@@ -162,8 +180,10 @@ public class QuestManager : MonoBehaviour
             if (QuestIndex[5] == 0)
             {
                 Quest_Cost_Coin = 500;
-                Quest_NameText.text = "퀘스트F 800골드";
-                Quest_Ex_Text.text = "퀘스트 5\n\nC아이템을 B지역에서 A지역까지 배달을 하여라\n\n퀘스트 비용 : 500골드";
+                QuestName = "퀘스트F 800골드\n";
+                QuestEx = "C아이템을 B지역에서 A지역까지\n배달을 하여라\n\n퀘스트 비용 : 500골드";
+                Quest_NameText.text = QuestName;
+                Quest_Ex_Text.text = QuestEx;
             }
             for (int i = 0; i < isQuest_Number.Length; i++)
             {
@@ -187,8 +207,10 @@ public class QuestManager : MonoBehaviour
             if (QuestIndex[6] == 0)
             {
                 Quest_Cost_Coin += 210;
-                Quest_NameText.text = "퀘스트G 600골드";
-                Quest_Ex_Text.text = "퀘스트6\n\nA아이템을 A지역에서 B지역까지 배달을 하여라\n\n퀘스트 비용 : 210골드";
+                QuestName = "퀘스트G 600골드\n";
+                QuestEx = "A아이템을 A지역에서 B지역까지\n배달을 하여라\n\n퀘스트 비용 : 210골드";
+                Quest_NameText.text = QuestName;
+                Quest_Ex_Text.text = QuestEx;
             }
             for (int i = 0; i < isQuest_Number.Length; i++)
             {
@@ -244,6 +266,9 @@ public class QuestManager : MonoBehaviour
                     Accept_Quest_Number++;
                     isQuest_Number[i] = false;
                     Quest_Cost_Coin = 0;
+                    Quest_Name.Add(QuestName);
+                    Quest_Ex.Add(QuestEx);
+                    Debug.Log("퀘스트 수락");
                     //Overlap_Quest_Coin += Quest_Cost_Coin;
                 }
             }
@@ -274,12 +299,6 @@ public class QuestManager : MonoBehaviour
     //    Overlap_Quest_Coin = 0;
     //    Accept_Quest_Number = 0;
     //}
-    public void Close_Quest_Board()
-    {
-        Player_Interaction.instance.isTest = false;
-        StartCoroutine(UI_AnimationManager.instance.Move_QuestBoardUI());
-        //Quest_Board.SetActive(false);
-    }
     public void Set_Item() //퀘스트 아이템 지급
     {
         if (isQuest_Accept[0])
@@ -333,71 +352,77 @@ public class QuestManager : MonoBehaviour
             }
         }
     }
-    public void Get_Item(int i)
+    public void Close_Quest_Board()
     {
-        if (isQuest_Accept[0])
-        {
-            isQuest_Accept[i] = false;
-            if (QuestIndex[0] == 0)
-            {
-                Destroy(GameObject.Find("Red_potionIMG(Clone)"));
-            }
-            QuestIndex[i]--;
-        }
-        if (isQuest_Accept[1])
-        {
-            isQuest_Accept[i] = false;
-            if (QuestIndex[1] == 0)
-            {
-                Destroy(GameObject.Find("Red_potionIMG(Clone)"));
-            }
-            QuestIndex[i]--;
-        }
-        if (isQuest_Accept[2])
-        {
-            isQuest_Accept[i] = false;
-            if (QuestIndex[2] == 0)
-            {
-                Destroy(GameObject.Find("Red_potionIMG(Clone)"));
-            }
-            QuestIndex[i]--;
-        }
-        if (isQuest_Accept[3])
-        {
-            isQuest_Accept[i] = false;
-            if (QuestIndex[3] == 0)
-            {
-                Destroy(GameObject.Find("Red_potionIMG(Clone)"));
-            }
-            QuestIndex[i]--;
-        }
-        if (isQuest_Accept[4])
-        {
-            isQuest_Accept[i] = false;
-            if (QuestIndex[4] == 0)
-            {
-                Destroy(GameObject.Find("Red_potionIMG(Clone)"));
-            }
-            QuestIndex[i]--;
-        }
-        if (isQuest_Accept[5])
-        {
-            isQuest_Accept[i] = false;
-            if (QuestIndex[5] == 0)
-            {
-                Destroy(GameObject.Find("Red_potionIMG(Clone)"));
-            }
-            QuestIndex[i]--;
-        }
-        if (isQuest_Number[6])
-        {
-            isQuest_Accept[i] = false;
-            if (QuestIndex[6] == 0)
-            {
-                Destroy(GameObject.Find("Red_potionIMG(Clone)"));
-            }
-            QuestIndex[i]--;
-        }
-
+        Player_Interaction.instance.isTest = false;
+        StartCoroutine(UI_AnimationManager.instance.Move_QuestBoardUI());
+        //Quest_Board.SetActive(false);
     }
+    //public void Get_Item(int i)
+    //{
+    //    if (isQuest_Accept[0])
+    //    {
+    //        isQuest_Accept[i] = false;
+    //        if (QuestIndex[0] == 0)
+    //        {
+    //            Destroy(GameObject.Find("Red_potionIMG(Clone)"));
+    //        }
+    //        QuestIndex[i]--;
+    //    }
+    //    if (isQuest_Accept[1])
+    //    {
+    //        isQuest_Accept[i] = false;
+    //        if (QuestIndex[1] == 0)
+    //        {
+    //            Destroy(GameObject.Find("Red_potionIMG(Clone)"));
+    //        }
+    //        QuestIndex[i]--;
+    //    }
+    //    if (isQuest_Accept[2])
+    //    {
+    //        isQuest_Accept[i] = false;
+    //        if (QuestIndex[2] == 0)
+    //        {
+    //            Destroy(GameObject.Find("Red_potionIMG(Clone)"));
+    //        }
+    //        QuestIndex[i]--;
+    //    }
+    //    if (isQuest_Accept[3])
+    //    {
+    //        isQuest_Accept[i] = false;
+    //        if (QuestIndex[3] == 0)
+    //        {
+    //            Destroy(GameObject.Find("Red_potionIMG(Clone)"));
+    //        }
+    //        QuestIndex[i]--;
+    //    }
+    //    if (isQuest_Accept[4])
+    //    {
+    //        isQuest_Accept[i] = false;
+    //        if (QuestIndex[4] == 0)
+    //        {
+    //            Destroy(GameObject.Find("Red_potionIMG(Clone)"));
+    //        }
+    //        QuestIndex[i]--;
+    //    }
+    //    if (isQuest_Accept[5])
+    //    {
+    //        isQuest_Accept[i] = false;
+    //        if (QuestIndex[5] == 0)
+    //        {
+    //            Destroy(GameObject.Find("Red_potionIMG(Clone)"));
+    //        }
+    //        QuestIndex[i]--;
+    //    }
+    //    if (isQuest_Number[6])
+    //    {
+    //        isQuest_Accept[i] = false;
+    //        if (QuestIndex[6] == 0)
+    //        {
+    //            Destroy(GameObject.Find("Red_potionIMG(Clone)"));
+    //        }
+    //        QuestIndex[i]--;
+    //    }
+
+    //}
 }

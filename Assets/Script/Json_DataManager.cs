@@ -50,7 +50,7 @@ public class Json_DataManager : MonoBehaviour
     public void ResetDataToJson()
     {
         data.CameraSmoothIndex = 1;
-        data.isCameraAction = true;
+        data.isCameraAction = false;
 
         data.Equip_Inventory_Item = new List<string>();
         data.Equip_Inventory_SlotIndex = new List<int>();
@@ -66,7 +66,7 @@ public class Json_DataManager : MonoBehaviour
         data.PlayerStemina = 5;
         data.PlayerMaxStemina = 5;
 
-        data.Player_pos = new Vector3(0, 2, 0);
+        data.Player_pos = new Vector3(0, 1.6f, 0);
 
         for (int i = 0; i < 7; i++)
         {

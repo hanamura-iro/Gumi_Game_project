@@ -1,8 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class DragonScenePlayerControl : MonoBehaviour
 {
@@ -19,7 +17,7 @@ public class DragonScenePlayerControl : MonoBehaviour
         if (!GameManager.Instance.isMenu)
         {
             Move();
-            Run();
+            //Run();
         }
     }
     void Move()
@@ -41,15 +39,17 @@ public class DragonScenePlayerControl : MonoBehaviour
             ani.SetBool("Walk", false);
         }
     }
-    void Run()
-    {
-        if (Input.GetKey(KeyCode.LeftShift))
-        {
-            movePower = 9;
-        }
-        else
-        {
-            movePower = 3;
-        }
-    }
+    //void Run()
+    //{
+    //    if (Input.GetKey(KeyCode.LeftShift))
+    //    {
+    //        ani.SetFloat("WalkSpeed", 2);
+    //        movePower = 9;
+    //    }
+    //    else
+    //    {
+    //        ani.SetFloat("WalkSpeed", 1);
+    //        movePower = 3;
+    //    }
+    //}
 }

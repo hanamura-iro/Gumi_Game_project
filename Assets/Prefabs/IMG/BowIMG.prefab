@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6353594729914404844}
   - component: {fileID: 8749212080018511993}
   - component: {fileID: 3646227357086634278}
+  - component: {fileID: -587657871940134507}
   - component: {fileID: 6281420536779395262}
   m_Layer: 5
   m_Name: BowIMG
@@ -90,7 +91,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Inventory_Content: {fileID: 0}
-  Item_Inventory_Pos: {fileID: 0}
+  DropItem: {fileID: 0}
+--- !u!114 &-587657871940134507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2397507267529020571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: daae0f7047351db4db56274fe2f5f7a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Item_Type: 1
 --- !u!225 &6281420536779395262
 CanvasGroup:
   m_ObjectHideFlags: 0

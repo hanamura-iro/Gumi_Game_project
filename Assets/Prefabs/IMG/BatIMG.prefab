@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8166658157854781405}
   - component: {fileID: 9107571020283949505}
   - component: {fileID: 1856268180103977713}
+  - component: {fileID: -3817213327976574666}
   - component: {fileID: 8140150903870071672}
   m_Layer: 5
   m_Name: BatIMG
@@ -90,7 +91,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Inventory_Content: {fileID: 0}
-  Item_Inventory_Pos: {fileID: 0}
+  DropItem: {fileID: 0}
+--- !u!114 &-3817213327976574666
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6912660036586512291}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: daae0f7047351db4db56274fe2f5f7a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Item_Type: 2
 --- !u!225 &8140150903870071672
 CanvasGroup:
   m_ObjectHideFlags: 0

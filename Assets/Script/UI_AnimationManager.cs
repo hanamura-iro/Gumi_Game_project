@@ -22,15 +22,15 @@ public class UI_AnimationManager : MonoBehaviour
         CurMainSettingTime = 0f;
         while (CurMainSettingTime < 1)
         {
-            CurMainSettingTime += 0.02f;
+            CurMainSettingTime += 0.03f;
             yield return new WaitForSeconds(0.001f);
-            float t = CurMainSettingTime / 1;
-            t = Mathf.Sin(t * Mathf.PI * 0.5f);
+            //float t = CurMainSettingTime / 1;
+            //t = Mathf.Sin(t * Mathf.PI * 0.5f);
 
             if (SettingButtonManager.Instance.isSetting)
-                MainSettingImg.transform.localPosition = Vector2.Lerp(new Vector2(0, 1000), new Vector2(0, 0), t);
+                MainSettingImg.transform.localPosition = Vector2.Lerp(new Vector2(0, 1000), new Vector2(0, 0), CurMainSettingTime);
             if (!SettingButtonManager.Instance.isSetting)
-                MainSettingImg.transform.localPosition = Vector2.Lerp(new Vector2(0, 0), new Vector2(0, 1000), t);
+                MainSettingImg.transform.localPosition = Vector2.Lerp(new Vector2(0, 0), new Vector2(0, 1000), CurMainSettingTime);
         }
     }
     #endregion
@@ -41,16 +41,16 @@ public class UI_AnimationManager : MonoBehaviour
         CurMenuTime = 0f;
         while (CurMenuTime < 1)
         {
-            CurMenuTime += 0.02f;
+            CurMenuTime += 0.03f;
             yield return new WaitForSeconds(0.001f);
-            float t = CurMenuTime / 1;
-            t = Mathf.Sin(t * Mathf.PI * 0.5f);
+            //float t = CurMenuTime / 1;
+            //t = Mathf.Sin(t * Mathf.PI * 0.5f);
 
             if (GameManager.Instance.isMenu)
-                GameManager.Instance.MenuIMG.transform.localPosition = Vector2.Lerp(new Vector2(0, 1200), new Vector2(0, 0), t);
+                GameManager.Instance.MenuIMG.transform.localPosition = Vector2.Lerp(new Vector2(0, 1200), new Vector2(0, 0), CurMenuTime);
             if (!GameManager.Instance.isMenu)
             {
-                GameManager.Instance.MenuIMG.transform.localPosition = Vector2.Lerp(new Vector2(0, 0), new Vector2(0, 1200), t);
+                GameManager.Instance.MenuIMG.transform.localPosition = Vector2.Lerp(new Vector2(0, 0), new Vector2(0, 1200), CurMenuTime);
             }
         }
     }
@@ -60,15 +60,15 @@ public class UI_AnimationManager : MonoBehaviour
         CurPlayerStatusTime = 0f;
         while (CurPlayerStatusTime < 1)
         {
-            CurPlayerStatusTime += 0.02f;
+            CurPlayerStatusTime += 0.03f;
             yield return new WaitForSeconds(0.001f);
-            float t = CurPlayerStatusTime / 1;
-            t = Mathf.Sin(t * Mathf.PI * 0.5f);
+            //float t = CurPlayerStatusTime / 1;
+            //t = Mathf.Sin(t * Mathf.PI * 0.5f);
 
             if(Player.Instance.isInventory)
-                Player_status.transform.localPosition = Vector2.Lerp(new Vector2(0, -750), new Vector2(0, -345), t);
+                Player_status.transform.localPosition = Vector2.Lerp(new Vector2(0, -750), new Vector2(0, -345), CurPlayerStatusTime);
             if(!Player.Instance.isInventory)
-                Player_status.transform.localPosition = Vector2.Lerp(new Vector2(0, -345), new Vector2(0, -750), t);
+                Player_status.transform.localPosition = Vector2.Lerp(new Vector2(0, -345), new Vector2(0, -750), CurPlayerStatusTime);
         }
     }
     public float CurQuestBoardTime;
@@ -79,14 +79,14 @@ public class UI_AnimationManager : MonoBehaviour
         CurQuestBoardTime = 0f;
         while (CurQuestBoardTime < 1)
         {
-            CurQuestBoardTime += 0.02f;
+            CurQuestBoardTime += 0.03f;
             yield return new WaitForSeconds(0.001f);
-            float t = CurQuestBoardTime / 1;
-            t = Mathf.Sin(t * Mathf.PI * 0.5f);
+            //float t = CurQuestBoardTime / 1;
+            //t = Mathf.Sin(t * Mathf.PI * 0.5f);
 
             if (Player_Interaction.instance.isTest)
             {
-                Quest_Board.transform.localPosition = Vector2.Lerp(new Vector2(0,1000),new Vector2(0f,195f),t);
+                Quest_Board.transform.localPosition = Vector2.Lerp(new Vector2(0,1000),new Vector2(0f,195f), CurQuestBoardTime);
                 if (CurQuestBoardTime >= 1)
                 {
                     QuestBorade_BG_IMG.gameObject.SetActive(true);
@@ -94,7 +94,7 @@ public class UI_AnimationManager : MonoBehaviour
             }
             if (!Player_Interaction.instance.isTest)
             {
-                Quest_Board.transform.localPosition = Vector2.Lerp(new Vector2(0,195f),new Vector2(0,1000), t);
+                Quest_Board.transform.localPosition = Vector2.Lerp(new Vector2(0,195f),new Vector2(0,1000), CurQuestBoardTime);
                 if (CurQuestBoardTime <= 0)
                 {
                     QuestBorade_BG_IMG.gameObject.SetActive(false);

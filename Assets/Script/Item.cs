@@ -1,8 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Security.Cryptography;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
 
 public enum Type //아이템 종류
 {
@@ -12,23 +10,26 @@ public enum Type //아이템 종류
 }
 public class Item : MonoBehaviour
 {
+    Light ligth;
     Rigidbody2D rigid;
     public Type type;
     public bool isEat;
     public bool isCollision;
 
     public bool isDrop;
+    public float PosY;
     private void Awake()
     {
+        ligth = GetComponent<Light>();  
         rigid = GetComponent<Rigidbody2D>();
     }
     private void Start()
     {
-        if(isDrop)
+        if (isDrop)
         {
-            rigid.AddForce(Vector2.up * 2,ForceMode2D.Impulse);
-            if(Player.Instance.transform.localScale == new Vector3(1,1,1))
-                rigid.AddForce(Vector2.right * 2 ,ForceMode2D.Impulse);
+            rigid.AddForce(Vector2.up * 2, ForceMode2D.Impulse);
+            if (Player.Instance.transform.localScale == new Vector3(1, 1, 1))
+                rigid.AddForce(Vector2.right * 2, ForceMode2D.Impulse);
             if (Player.Instance.transform.localScale == new Vector3(-1, 1, 1))
                 rigid.AddForce(Vector2.left * 2, ForceMode2D.Impulse);
         }
@@ -37,6 +38,7 @@ public class Item : MonoBehaviour
     {
         if(collision.CompareTag("Player"))
         {
+            ligth.enabled = true;
             isCollision = true;
             isEat = true;
         }
@@ -74,6 +76,7 @@ public class Item : MonoBehaviour
     {
         if(collision.CompareTag("Player"))
         {
+            ligth.enabled = false;
             isCollision = false;
             isEat = false;
         }

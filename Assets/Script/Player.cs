@@ -52,23 +52,21 @@ public class Player : MonoBehaviour
             Run();
             Player_Status();
         }
+        Player_H_S_UI();
         #region 게임 낼 때 지워야 할 것
         if (Input.GetKeyDown(KeyCode.Q) && Hp > 0)
         {
             Hp--;
             Stemina--;
-            Player_H_S_UI();
         }
         if (Input.GetKeyDown(KeyCode.E) && Hp < 6)
         {
             Hp++;
             Stemina++;
-            Player_H_S_UI();
         }
         if (Input.GetKeyDown(KeyCode.R))
         {
             MaxHP++;
-            Player_H_S_UI();
         }
         if (Input.GetKeyDown(KeyCode.V))
         {
@@ -104,10 +102,12 @@ public class Player : MonoBehaviour
         if(Input.GetKey(KeyCode.LeftShift))
         {
             movePower = 9;
+            ani.SetFloat("WalkSpeed", 2);
         }
         else
         {
             movePower = 3;
+            ani.SetFloat("WalkSpeed", 1);
         }
     }
     void Player_Status() //플레이어 체력,스테미나,인벤토리 UI
@@ -247,15 +247,15 @@ public class Player : MonoBehaviour
         CurCmaeraTime = 0f;
         while (CurCmaeraTime < 1)
         {
-            CurCmaeraTime += 0.02f;
+            CurCmaeraTime += 0.03f;
             yield return new WaitForSeconds(0.001f);
-            float t = CurCmaeraTime / 1;
-            t = Mathf.Sin(t * Mathf.PI * 0.5f);
+            //float t = CurCmaeraTime / 1;
+            //t = Mathf.Sin(t * Mathf.PI * 0.5f);
 
             if (isInventory)
-                cam.transform.position = Vector2.Lerp(new Vector2(cam.transform.position.x, 4.7f), new Vector2(cam.transform.position.x, 1.5f), t);
+                cam.transform.position = Vector2.Lerp(new Vector2(cam.transform.position.x, 4.2f), new Vector2(cam.transform.position.x, 1.4f), CurCmaeraTime);
             else if (!isInventory)
-                cam.transform.position = Vector2.Lerp(new Vector2(cam.transform.position.x, 1.5f), new Vector2(cam.transform.position.x, 4.7f), t);
+                cam.transform.position = Vector2.Lerp(new Vector2(cam.transform.position.x, 1.4f), new Vector2(cam.transform.position.x, 4.2f), CurCmaeraTime);
         }
     }
 }

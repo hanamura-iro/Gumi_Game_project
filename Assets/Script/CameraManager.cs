@@ -5,6 +5,17 @@ using UnityEngine.SceneManagement;
 
 public class CameraManager : MonoBehaviour
 {
+    private void Start()
+    {
+        if(Player.Instance != null)
+        {
+            transform.position = new Vector3(Player.Instance.transform.position.x, transform.position.y, -8);
+        }
+        else if(DragonScenePlayerControl.Instance != null)
+        {
+            transform.position = new Vector3(DragonScenePlayerControl.Instance.transform.position.x, transform.position.y, 12);
+        }
+    }
     void LateUpdate()
     {
         //µå·¡°ï ¾À Ä«¸Þ¶ó Á¦ÇÑ

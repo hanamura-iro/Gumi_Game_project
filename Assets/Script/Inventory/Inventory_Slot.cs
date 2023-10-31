@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing.Imaging;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -38,7 +40,7 @@ public class Inventory_Slot : MonoBehaviour, IDropHandler
     {
         if (type == Slot_Type.Hand)
         {
-            if (Inventory_Item.Drag_Item.name == "BatIMG(Clone)" || Inventory_Item.Drag_Item.name == "Red_potionIMG(Clone)")
+            if (Inventory_Item.Drag_Item.name == "BatIMG(Clone)" || Inventory_Item.Drag_Item.name == "Red_potionIMG(Clone)" || Inventory_Item.Drag_Item.name == "longSworldIMG(Clone)")
             {
                 Inventory_Item.Drag_Item.transform.SetParent(this.transform);
                 Inventory_Item.Drag_Item.transform.localPosition = new Vector3(0, 0, 0);
@@ -49,7 +51,7 @@ public class Inventory_Slot : MonoBehaviour, IDropHandler
     {
         if (type == Slot_Type.Armor)
         {
-            if (Inventory_Item.Drag_Item.name == "Armor")
+            if (Inventory_Item.Drag_Item.name == "leatherArmorIMG(Clone)")
             {
                 Inventory_Item.Drag_Item.transform.SetParent(this.transform);
                 Inventory_Item.Drag_Item.transform.localPosition = new Vector3(0, 0, 0);
@@ -71,6 +73,7 @@ public class Inventory_Slot : MonoBehaviour, IDropHandler
     {
         if (this.transform.childCount == 0)
         {
+            Inventory_Child_Item = null;
             Slot.color = new Color(1, 1, 1, 1);
         }
         if (this.transform.childCount == 1)
@@ -84,7 +87,7 @@ public class Inventory_Slot : MonoBehaviour, IDropHandler
             {
                 Slot.color = new Color(1, 0.8f, 0, 1);
             }
-            if (Inventory_Child_Item.CompareTag("Rating_Blue")) //초록 위험도 1
+            if (Inventory_Child_Item.CompareTag("Rating_Green")) //초록 위험도 1
             {
                 Slot.color = new Color(0, 1, 0, 1);
             }

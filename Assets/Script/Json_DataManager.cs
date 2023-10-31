@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using UnityEngine.SceneManagement;
+using UnityEditor.PackageManager.UI;
 
 [Serializable]
 public class Data
@@ -18,15 +19,21 @@ public class Data
     public List<string> Inventory_Item = new List<string>();
     public List<int> Inventory_SlotIndex = new List<int>();
 
+    [Header("플레이어 스탯")]
     public int PlayerGold;
-
     public int PlayerHP;
     public int PlayerMaxHP;
-
     public int PlayerStemina;
     public int PlayerMaxStemina;
-
     public Vector3 Player_pos;
+
+    [Header("플레이어 Ability")]
+    public int Health;
+    public int Power;
+    public int Wisdom;
+    public int Speed;
+    public int Intelligence;
+    public int Charm;
 
     public int[] QuestIndex = { 0, 0, 0, 0, 0, 0, 0 }; //퀘스트 인덱스
     public bool[] isQuest_Accept = { false, false, false, false, false, false, false }; //수락 된 퀘스트 
@@ -66,7 +73,14 @@ public class Json_DataManager : MonoBehaviour
         data.PlayerStemina = 5;
         data.PlayerMaxStemina = 5;
 
-        data.Player_pos = new Vector3(0, 1.6f, 0);
+        data.Player_pos = new Vector3(-15f, 1.6f, 0);
+
+        data.Health = 10;
+        data.Power = 10;
+        data.Wisdom = 10;
+        data.Speed = 10;
+        data.Intelligence = 10;
+        data.Charm = 10;
 
         for (int i = 0; i < 7; i++)
         {
@@ -126,6 +140,13 @@ public class Json_DataManager : MonoBehaviour
 
             data.Player_pos = Player.Instance.transform.position;
 
+            data.Health = Player.Instance.Health;
+            data.Power = Player.Instance.Power;
+            data.Wisdom = Player.Instance.Wisdom;
+            data.Speed = Player.Instance.Speed;
+            data.Intelligence = Player.Instance.Intelligence;
+            data.Charm = Player.Instance.Charm;
+
             for (int i = 0; i < 7; i++)
             {
                 data.QuestIndex[i] = QuestManager.Instance.QuestIndex[i];
@@ -175,6 +196,13 @@ public class Json_DataManager : MonoBehaviour
 
             Player.Instance.transform.position = data.Player_pos;
 
+            Player.Instance.Health = data.Health;
+            Player.Instance.Power = data.Power;
+            Player.Instance.Wisdom = data.Wisdom;
+            Player.Instance.Speed = data.Speed;
+            Player.Instance.Intelligence = data.Intelligence;
+            Player.Instance.Charm = data.Charm;
+
             for (int i = 0; i < 7; i++)
             {
                 QuestManager.Instance.QuestIndex[i] = data.QuestIndex[i];
@@ -212,6 +240,14 @@ public class Json_DataManager : MonoBehaviour
         {
             Instantiate(Inventory.Instance.BatIMG, Inventory.Instance.Equip_Inventory_Slot[data.Equip_Inventory_SlotIndex[i]].transform);
         }
+        else if (data.Equip_Inventory_Item[i] == Inventory.Instance.leatherArmorIMG.name + "(Clone)")
+        {
+            Instantiate(Inventory.Instance.leatherArmorIMG, Inventory.Instance.Equip_Inventory_Slot[data.Equip_Inventory_SlotIndex[i]].transform);
+        }
+        else if (data.Equip_Inventory_Item[i] == Inventory.Instance.longSworldIMG.name + "(Clone)")
+        {
+            Instantiate(Inventory.Instance.longSworldIMG, Inventory.Instance.Equip_Inventory_Slot[data.Equip_Inventory_SlotIndex[i]].transform);
+        }
     }
     void Inventory_Item_Instantiate(int i)
     {
@@ -226,6 +262,14 @@ public class Json_DataManager : MonoBehaviour
         else if (data.Inventory_Item[i] == Inventory.Instance.BatIMG.name + "(Clone)")
         {
             Instantiate(Inventory.Instance.BatIMG, Inventory.Instance.Inventory_Slot[data.Inventory_SlotIndex[i]].transform);
+        }
+        else if (data.Inventory_Item[i] == Inventory.Instance.leatherArmorIMG.name + "(Clone)")
+        {
+            Instantiate(Inventory.Instance.leatherArmorIMG, Inventory.Instance.Inventory_Slot[data.Inventory_SlotIndex[i]].transform);
+        }
+        else if (data.Inventory_Item[i] == Inventory.Instance.longSworldIMG.name + "(Clone)")
+        {
+            Instantiate(Inventory.Instance.longSworldIMG, Inventory.Instance.Inventory_Slot[data.Inventory_SlotIndex[i]].transform);
         }
     }
 }

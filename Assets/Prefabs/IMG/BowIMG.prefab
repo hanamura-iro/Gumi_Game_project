@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 6281420536779395262}
   m_Layer: 5
   m_Name: BowIMG
-  m_TagString: Rating_Blue
+  m_TagString: Rating_Green
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

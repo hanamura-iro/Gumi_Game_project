@@ -6,21 +6,20 @@ public enum Type //아이템 종류
 {
     RedPotion,
     bow,
-    bat
+    bat,
+    leatherArmor,
+    longSworld,
 }
 public class Item : MonoBehaviour
 {
-    Light ligth;
     Rigidbody2D rigid;
     public Type type;
     public bool isEat;
     public bool isCollision;
 
     public bool isDrop;
-    public float PosY;
     private void Awake()
     {
-        ligth = GetComponent<Light>();  
         rigid = GetComponent<Rigidbody2D>();
     }
     private void Start()
@@ -38,7 +37,6 @@ public class Item : MonoBehaviour
     {
         if(collision.CompareTag("Player"))
         {
-            ligth.enabled = true;
             isCollision = true;
             isEat = true;
         }
@@ -68,6 +66,16 @@ public class Item : MonoBehaviour
                         Inventory.Instance.Set_Item(Type.bat);
                         Destroy(this.gameObject);
                     }
+                    else if (type == Type.leatherArmor)
+                    {
+                        Inventory.Instance.Set_Item(Type.leatherArmor);
+                        Destroy(this.gameObject);
+                    }
+                    else if (type == Type.longSworld)
+                    {
+                        Inventory.Instance.Set_Item(Type.longSworld);
+                        Destroy(this.gameObject);
+                    }
                 }
             }
         }
@@ -76,7 +84,6 @@ public class Item : MonoBehaviour
     {
         if(collision.CompareTag("Player"))
         {
-            ligth.enabled = false;
             isCollision = false;
             isEat = false;
         }

@@ -17,6 +17,20 @@ public class Player : MonoBehaviour
     public int Stemina; //기본 5칸
     public int MaxStemina;
 
+    [Header("플레이어 Ability")]
+    public int Health;
+    public Text HealthText;
+    public int Power;
+    public Text PowerText;
+    public int Wisdom;
+    public Text WisdomText;
+    public int Speed;
+    public Text SpeedText;
+    public int Intelligence;
+    public Text IntelligenceText;
+    public int Charm;
+    public Text CharmText;
+
     [Header("플레이어의 돈")]
     public int Gold;
     public Text Gold_Text;
@@ -50,8 +64,9 @@ public class Player : MonoBehaviour
         {
             Move();
             Run();
-            Player_Status();
         }
+        Player_Status();
+        AbilityText();
         Player_H_S_UI();
         #region 게임 낼 때 지워야 할 것
         if (Input.GetKeyDown(KeyCode.Q) && Hp > 0)
@@ -72,11 +87,16 @@ public class Player : MonoBehaviour
         {
             Json_DataManager.instance.ResetDataToJson();
         }
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            Json_DataManager.instance.SaveDataToJson();
-        }
         #endregion
+    }
+    public void AbilityText()
+    {
+        HealthText.text = Health + "";
+        PowerText.text = Power + "";
+        WisdomText.text = Wisdom + "";
+        SpeedText.text = Speed + "";
+        IntelligenceText.text = Intelligence + "";
+        CharmText.text = Charm + "";
     }
     void Move()
     {

@@ -7,7 +7,10 @@ public enum Item_Type
 {
     Red_Potion,
     Bow,
-    Bat
+    Bat,
+
+    leatherArmor,
+    longSworld,
 }
 
 public class Item_Interaction : MonoBehaviour, IPointerDownHandler
@@ -37,6 +40,12 @@ public class Item_Interaction : MonoBehaviour, IPointerDownHandler
                 Debug.Log("사용 아이템 아님");
                 break;
             case Item_Type.Bat:
+                Debug.Log("사용 아이템 아님");
+                break;
+            case Item_Type.leatherArmor:
+                Debug.Log("사용 아이템 아님");
+                break;
+            case Item_Type.longSworld:
                 Debug.Log("사용 아이템 아님");
                 break;
         }

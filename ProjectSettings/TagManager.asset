@@ -6,7 +6,7 @@ TagManager:
   tags:
   - Rating_Red
   - Rating_Yellow
-  - Rating_Blue
+  - Rating_Green
   layers:
   - Default
   - TransparentFX

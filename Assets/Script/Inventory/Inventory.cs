@@ -10,16 +10,22 @@ public class Inventory : MonoBehaviour
     public GameObject Red_Potion;
     public GameObject Bow;
     public GameObject Bat;
+    public GameObject leatherArmor;
+    public GameObject longSworld;
 
     [Header("아이템 이미지")]
     public Image Red_PotionIMG;
     public Image BowIMG;
     public Image BatIMG;
+    public Image leatherArmorIMG;
+    public Image longSworldIMG;
 
     [Header("아이템 스프라이트")]
     public Sprite Red_PotionSprite;
     public Sprite BowSprite;
     public Sprite BatSprite;
+    public Sprite leatherArmorSprite;
+    public Sprite longSworldSprite;
 
     [Header("아이템 설명 UI")]
     public Image Item_DescriptionIMG;
@@ -46,13 +52,21 @@ public class Inventory : MonoBehaviour
                 {
                     Instantiate(Red_PotionIMG, Inventory_Slot[i].transform);
                 }
-                if (type == Type.bow)
+                else if (type == Type.bow)
                 {
                     Instantiate(BowIMG, Inventory_Slot[i].transform);
                 }
-                if (type == Type.bat)
+                else if (type == Type.bat)
                 {
                     Instantiate(BatIMG, Inventory_Slot[i].transform);
+                }
+                else if (type == Type.leatherArmor)
+                {
+                    Instantiate(leatherArmorIMG, Inventory_Slot[i].transform);
+                }
+                else if (type == Type.longSworld)
+                {
+                    Instantiate(longSworldIMG, Inventory_Slot[i].transform);
                 }
             }
         }

@@ -58,6 +58,16 @@ public class Inventory_Item : MonoBehaviour ,IBeginDragHandler, IDragHandler ,IE
                 DropItem = Instantiate(Inventory.Instance.Bat);
                 DropItem.GetComponent<Item>().isDrop = true;
             }
+            if (Drag_Item.name == "leatherArmorIMG(Clone)")
+            {
+                DropItem = Instantiate(Inventory.Instance.leatherArmor);
+                DropItem.GetComponent<Item>().isDrop = true;
+            }
+            if (Drag_Item.name == "longSworldIMG(Clone)")
+            {
+                DropItem = Instantiate(Inventory.Instance.longSworld);
+                DropItem.GetComponent<Item>().isDrop = true;
+            }
 
             if (Player.Instance.transform.localScale == new Vector3(1, 1, 1))
             {
@@ -97,6 +107,22 @@ public class Inventory_Item : MonoBehaviour ,IBeginDragHandler, IDragHandler ,IE
             Inventory.Instance.Item_IMG.sprite = Inventory.Instance.BatSprite;
             Inventory.Instance.Item_Name.text = "³ª¹« ¹æ¸ÁÀÌ\n<color=#FFFF00>Y</color>µî±Þ\nÆÇ¸Å°¡ : <color=#ECC041>40G</color>";
             Inventory.Instance.Item_Description.text = "³ª¹« ¹æ¸ÁÀÌ";
+        }
+        else if (this.gameObject.name == "leatherArmor(Clone)")
+        {
+            Inventory.Instance.Item_DescriptionIMG.transform.position = new Vector2(Input.mousePosition.x + 260, Input.mousePosition.y + 260);
+            Inventory.Instance.Item_DescriptionIMG.gameObject.SetActive(true);
+            Inventory.Instance.Item_IMG.sprite = Inventory.Instance.leatherArmorSprite;
+            Inventory.Instance.Item_Name.text = "°¡Á× °©¿Ê\n<color=#00FF00>G</color>µî±Þ\nÆÇ¸Å°¡ : <color=#ECC041>70G</color>";
+            Inventory.Instance.Item_Description.text = "Ã¼·Â +10";
+        }
+        else if (this.gameObject.name == "longSworld(Clone)")
+        {
+            Inventory.Instance.Item_DescriptionIMG.transform.position = new Vector2(Input.mousePosition.x + 260, Input.mousePosition.y + 260);
+            Inventory.Instance.Item_DescriptionIMG.gameObject.SetActive(true);
+            Inventory.Instance.Item_IMG.sprite = Inventory.Instance.longSworldSprite;
+            Inventory.Instance.Item_Name.text = "·Õ¼Òµå\n<color=#FF0000>R</color>µî±Þ\nÆÇ¸Å°¡ : <color=#ECC041>60G</color>";
+            Inventory.Instance.Item_Description.text = "Èû +5";
         }
     }
 

@@ -87,6 +87,23 @@ public class Player : MonoBehaviour
         {
             Json_DataManager.instance.ResetDataToJson();
         }
+
+        if(Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            LoadingScene.LoadScene("PlayerCity");
+            Json_DataManager.instance.SaveDataToJson();
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            LoadingScene.LoadScene("DragonCity");
+            Json_DataManager.instance.SaveDataToJson();
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            LoadingScene.LoadScene("Dragon");
+            Json_DataManager.instance.SaveDataToJson();
+        }
+
         #endregion
     }
     public void AbilityText()

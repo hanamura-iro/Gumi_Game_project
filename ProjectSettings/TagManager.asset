@@ -7,6 +7,7 @@ TagManager:
   - Rating_Red
   - Rating_Yellow
   - Rating_Green
+  - Quest_Board
   layers:
   - Default
   - TransparentFX

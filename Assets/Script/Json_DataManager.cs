@@ -5,6 +5,8 @@ using UnityEngine;
 using System.IO;
 using UnityEngine.SceneManagement;
 using UnityEditor.PackageManager.UI;
+using System.Drawing.Imaging;
+using Unity.VisualScripting;
 
 [Serializable]
 public class Data
@@ -25,7 +27,10 @@ public class Data
     public int PlayerMaxHP;
     public int PlayerStemina;
     public int PlayerMaxStemina;
-    public Vector3 Player_pos;
+
+    public string SceneName; //플레이어가 마지막으로 있던 씬
+    public Vector3 PlayerCity_PlayerPos;
+    public Vector3 DragonCity_Player_pos;
 
     [Header("플레이어 Ability")]
     public int Health;
@@ -73,7 +78,9 @@ public class Json_DataManager : MonoBehaviour
         data.PlayerStemina = 5;
         data.PlayerMaxStemina = 5;
 
-        data.Player_pos = new Vector3(-15f, 1.6f, 0);
+        data.SceneName = "PlayerCity";
+        data.PlayerCity_PlayerPos = new Vector3(-12, 1.6f,0f);
+        data.DragonCity_Player_pos = new Vector3(-36f, 1.6f, 0);
 
         data.Health = 10;
         data.Power = 10;
@@ -96,7 +103,8 @@ public class Json_DataManager : MonoBehaviour
         string path = Path.Combine(Application.persistentDataPath, "GameData.json");
         File.WriteAllText(path, GameData);
 
-        LoadingScene.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        //LoadingScene.LoadScene(SceneManager.GetActiveScene().name);
+        LoadingScene.LoadScene(data.SceneName);
     }
     [ContextMenu("To Json Data")]
     public void SaveDataToJson()
@@ -138,7 +146,17 @@ public class Json_DataManager : MonoBehaviour
             data.PlayerStemina = Player.Instance.Stemina;
             data.PlayerMaxStemina = Player.Instance.MaxStemina;
 
-            data.Player_pos = Player.Instance.transform.position;
+            data.SceneName = SceneManager.GetActiveScene().name;
+            if (SceneManager.GetActiveScene().name == "PlayerCity")
+            {
+                data.DragonCity_Player_pos = new Vector3(-36f, 1.6f, 0);
+                data.PlayerCity_PlayerPos = Player.Instance.transform.position;
+            }
+            if (SceneManager.GetActiveScene().name == "DragonCity")
+            {
+                data.PlayerCity_PlayerPos = new Vector3(-12, 1.6f, 0f);
+                data.DragonCity_Player_pos = Player.Instance.transform.position;
+            }
 
             data.Health = Player.Instance.Health;
             data.Power = Player.Instance.Power;
@@ -194,7 +212,11 @@ public class Json_DataManager : MonoBehaviour
             Player.Instance.MaxStemina = data.PlayerMaxStemina;
             Player.Instance.Player_H_S_UI();
 
-            Player.Instance.transform.position = data.Player_pos;
+            //LoadingScene.LoadScene(data.SceneName);
+            if (SceneManager.GetActiveScene().name == "PlayerCity")
+                Player.Instance.transform.position = data.PlayerCity_PlayerPos;
+            if (SceneManager.GetActiveScene().name == "DragonCity")
+                Player.Instance.transform.position = data.DragonCity_Player_pos;
 
             Player.Instance.Health = data.Health;
             Player.Instance.Power = data.Power;

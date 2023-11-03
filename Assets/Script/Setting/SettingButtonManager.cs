@@ -9,7 +9,7 @@ public class SettingButtonManager : MonoBehaviour
     public static SettingButtonManager Instance;
     public void StartBtn()
     {
-        LoadingScene.LoadScene(1);
+        LoadingScene.LoadScene(Json_DataManager.instance.data.SceneName);
     }
     public void ExitBtn()
     {

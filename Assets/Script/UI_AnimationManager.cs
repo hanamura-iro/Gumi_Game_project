@@ -84,7 +84,7 @@ public class UI_AnimationManager : MonoBehaviour
             //float t = CurQuestBoardTime / 1;
             //t = Mathf.Sin(t * Mathf.PI * 0.5f);
 
-            if (Player_Interaction.instance.isTest)
+            if (Player_Interaction.instance.isQuestBoard)
             {
                 Quest_Board.transform.localPosition = Vector2.Lerp(new Vector2(0,1000),new Vector2(0f,195f), CurQuestBoardTime);
                 if (CurQuestBoardTime >= 1)
@@ -92,7 +92,7 @@ public class UI_AnimationManager : MonoBehaviour
                     QuestBorade_BG_IMG.gameObject.SetActive(true);
                 }
             }
-            if (!Player_Interaction.instance.isTest)
+            if (!Player_Interaction.instance.isQuestBoard)
             {
                 Quest_Board.transform.localPosition = Vector2.Lerp(new Vector2(0,195f),new Vector2(0,1000), CurQuestBoardTime);
                 if (CurQuestBoardTime <= 0)

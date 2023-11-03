@@ -352,12 +352,6 @@ public class QuestManager : MonoBehaviour
             }
         }
     }
-    public void Close_Quest_Board()
-    {
-        Player_Interaction.instance.isTest = false;
-        StartCoroutine(UI_AnimationManager.instance.Move_QuestBoardUI());
-        //Quest_Board.SetActive(false);
-    }
     //public void Get_Item(int i)
     //{
     //    if (isQuest_Accept[0])

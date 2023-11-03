@@ -16,17 +16,17 @@ public class SettingManager : MonoBehaviour
     public void KoLanguage()
     {
         PlayerPrefs.SetInt("Language", 0);
-        LoadingScene.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        LoadingScene.LoadScene(SceneManager.GetActiveScene().name);
     }
     public void EnLanguage()
     {
         PlayerPrefs.SetInt("Language", 1);
-        LoadingScene.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        LoadingScene.LoadScene(SceneManager.GetActiveScene().name);
     }
     public void JaLanguage()
     {
         PlayerPrefs.SetInt("Language", 2);
-        LoadingScene.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        LoadingScene.LoadScene(SceneManager.GetActiveScene().name);
     }
     #endregion
     #region 카메라 설정

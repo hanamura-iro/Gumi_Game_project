@@ -19,7 +19,7 @@ public class CameraManager : MonoBehaviour
     void LateUpdate()
     {
         //µå·¡°ï ¾À Ä«¸Þ¶ó Á¦ÇÑ
-        if(SceneManager.GetActiveScene().name == "Dragon")
+        if (SceneManager.GetActiveScene().name == "Dragon")
         {
             if (DragonScenePlayerControl.Instance.transform.position.x >= -17 && DragonScenePlayerControl.Instance.transform.position.x <= 0)
             {
@@ -34,16 +34,34 @@ public class CameraManager : MonoBehaviour
                 }
             }
         }
-        else //ÀÏ¹Ý ¾À
+        else if (SceneManager.GetActiveScene().name == "PlayerCity")
         {
-            if (SettingManager.Instance.isCameraAction)
+            if (Player.Instance.transform.position.x >= -13.5f && Player.Instance.transform.position.x <= 13.5f)
             {
-                transform.position = Vector3.Lerp(new Vector3(transform.position.x,transform.position.y,-8),new Vector3(Player.Instance.transform.position.x,transform.position.y,-8), SettingManager.Instance.CameraSmoothIndex * Time.deltaTime);
-                transform.position = new Vector3(transform.position.x, transform.position.y, -8);
+                if (SettingManager.Instance.isCameraAction)
+                {
+                    transform.position = Vector3.Lerp(new Vector3(transform.position.x, transform.position.y, -8), new Vector3(Player.Instance.transform.position.x, transform.position.y, -8), SettingManager.Instance.CameraSmoothIndex * Time.deltaTime);
+                    transform.position = new Vector3(transform.position.x, transform.position.y, -8);
+                }
+                else
+                {
+                    transform.position = new Vector3(Player.Instance.transform.position.x, transform.position.y, -8);
+                }
             }
-            else
+        }
+        else if (SceneManager.GetActiveScene().name == "DragonCity")
+        {
+            if (Player.Instance.transform.position.x >= -36.5f && Player.Instance.transform.position.x <= 36.5f)
             {
-                transform.position = new Vector3(Player.Instance.transform.position.x, transform.position.y, -8);
+                if (SettingManager.Instance.isCameraAction)
+                {
+                    transform.position = Vector3.Lerp(new Vector3(transform.position.x, transform.position.y, -8), new Vector3(Player.Instance.transform.position.x, transform.position.y, -8), SettingManager.Instance.CameraSmoothIndex * Time.deltaTime);
+                    transform.position = new Vector3(transform.position.x, transform.position.y, -8);
+                }
+                else
+                {
+                    transform.position = new Vector3(Player.Instance.transform.position.x, transform.position.y, -8);
+                }
             }
         }
     }

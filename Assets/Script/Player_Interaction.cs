@@ -6,7 +6,8 @@ public class Player_Interaction : MonoBehaviour
 {
     public static Player_Interaction instance;
 
-    public bool isTest;
+    public bool isQuestBoard;
+    public bool isQuestBoardCollider;
     private void Awake()
     {
         instance = this;
@@ -15,35 +16,35 @@ public class Player_Interaction : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.T))
         {
-            if(isTest)
+            if(isQuestBoard && isQuestBoardCollider)
             {
-                isTest = false;
                 StartCoroutine(UI_AnimationManager.instance.Move_QuestBoardUI());
+                isQuestBoard = false;
             }
-            else if(!isTest)
+            else if (!isQuestBoard && isQuestBoardCollider)
             {
-                isTest = true;
+                isQuestBoard = true;
                 StartCoroutine(UI_AnimationManager.instance.Move_QuestBoardUI());
             }
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(Input.GetKeyDown(KeyCode.F))
+        if(collision.CompareTag("Quest_Board"))
         {
-            if(collision.CompareTag("Quest_Board"))
+            isQuestBoardCollider = true;
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Quest_Board"))
+        {
+            if(isQuestBoard)
             {
-                isTest = true;
+                isQuestBoardCollider = false;
+                isQuestBoard = false;
                 StartCoroutine(UI_AnimationManager.instance.Move_QuestBoardUI());
             }
         }
     }
-    //private void OnTriggerExit2D(Collider2D collision)
-    //{
-    //    if (collision.CompareTag("Quest_Board"))
-    //    {
-    //        isTest = false;
-    //        StartCoroutine(UI_AnimationManager.instance.Move_QuestBoardUI());
-    //    }
-    //}
 }

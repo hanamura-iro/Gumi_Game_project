@@ -6,11 +6,11 @@ using UnityEngine.SceneManagement;
 
 public class LoadingScene : MonoBehaviour
 {
-    static int nexScene;
+    static string nexScene;
     public Image progressBar;
-    public static void LoadScene(int SceneIndex)
+    public static void LoadScene(string SceneName)
     {
-        nexScene = SceneIndex;
+        nexScene = SceneName;
         SceneManager.LoadScene("LoadingScene");
     }
     private void Start()

@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/Scenes/MainScene.unity
     guid: 8babe0b752633234dab8a8de181517cd
   - enabled: 1
-    path: Assets/Scenes/InGame.unity
+    path: Assets/Scenes/DragonCity.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
     path: Assets/Scenes/LoadingScene.unity
@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Dragon.unity
     guid: 76de362d4825b5740a3f31a1a33e6055
+  - enabled: 1
+    path: Assets/Scenes/PlayerCity.unity
+    guid: 97cd73feb51f63f49bf3a5d502f0173f
   m_configObjects: {}

@@ -333,21 +333,21 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(1f);
         PosX = transform.position.x;
         CurAttackAniTime = 0f;
-        while (CurAttackAniTime < 1)
+        while (CurAttackAniTime <= 1)
         {
             CurAttackAniTime += AttackTime;
             yield return new WaitForSeconds(0.001f);
             transform.position = Vector3.Lerp(new Vector3(transform.position.x, transform.position.y, 0), new Vector3(EnemyAi.instance.transform.position.x - 1, transform.position.y, 0), CurAttackAniTime);         
         }
+        StartCoroutine(BackAttackAni());
         EnemyAi.instance.HP -= Power;
         Instantiate(DIceScript.instance.HitEffect,new Vector2(EnemyAi.instance.transform.position.x,EnemyAi.instance.transform.position.y),Quaternion.identity);
         DIceScript.instance.HitEffect.transform.localScale = new Vector3(-1, 1, 1);
-        StartCoroutine(BackAttackAni());
     }
     IEnumerator BackAttackAni()
     {
         CurAttackAniTime = 0f;
-        while (CurAttackAniTime < 1)
+        while (CurAttackAniTime <= 0.7f)
         {
             CurAttackAniTime += AttackTime;
             yield return new WaitForSeconds(0.001f);

@@ -41,21 +41,21 @@ public class EnemyAi : MonoBehaviour //턴제형 Ai 전투 스크립트
         HPBar.maxValue = MaxHP;
         PosX = transform.position.x;
         CurAttackAniTime = 0f;
-        while (CurAttackAniTime < 1)
+        while (CurAttackAniTime <= 1)
         {
             CurAttackAniTime += AttackTime;
             yield return new WaitForSeconds(0.001f);
             transform.position = Vector3.Lerp(new Vector3(transform.position.x, transform.position.y, 0), new Vector3(Player.Instance.transform.position.x + 2.5f, transform.position.y, 0), CurAttackAniTime);
         }
+        StartCoroutine(BackAttackAni());
         Player.Instance.Health -= Power;
         Instantiate(DIceScript.instance.HitEffect, new Vector2(Player.Instance.transform.position.x + 1,Player.Instance.transform.position.y), Quaternion.identity);
         DIceScript.instance.HitEffect.transform.localScale = new Vector3(1, 1, 1);
-        StartCoroutine(BackAttackAni());
     }
     IEnumerator BackAttackAni()
     {
         CurAttackAniTime = 0f;
-        while (CurAttackAniTime < 1)
+        while (CurAttackAniTime <= 1f)
         {
             CurAttackAniTime += AttackTime;
             yield return new WaitForSeconds(0.001f);

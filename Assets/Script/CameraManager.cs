@@ -29,13 +29,15 @@ public class CameraManager : MonoBehaviour
     }
     void LateUpdate()
     {
-        if (Player.Instance.isBattle)
-            return;
+        if (Player.Instance != null)
+            if (Player.Instance.isBattle)
+                return;
 
         if (SceneManager.GetActiveScene().name != "DragonLine")
         {
-            if (Player_Interaction.instance.isInHouse)
-                return;
+            if(Player.Instance != null)
+                if (Player_Interaction.instance.isInHouse)
+                    return;
 
             //µå·¡°ï ¾À Ä«¸Þ¶ó Á¦ÇÑ
             if (SceneManager.GetActiveScene().name == "Dragon")

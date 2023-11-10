@@ -18,6 +18,13 @@ public class DragonScenePlayerControl : MonoBehaviour
         {
             Move();
             //Run();
+            if(transform.position.x >= 0)
+            {
+                if (Input.GetKeyDown(KeyCode.T))
+                {
+                    LoadingScene.LoadScene("DragonCity");
+                }
+            }
         }
     }
     void Move()

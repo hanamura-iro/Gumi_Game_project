@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/PlayerCity.unity
     guid: 97cd73feb51f63f49bf3a5d502f0173f
+  - enabled: 1
+    path: Assets/Scenes/DragonLine.unity
+    guid: d0093db8907889848a44ad5f9427afcb
   m_configObjects: {}

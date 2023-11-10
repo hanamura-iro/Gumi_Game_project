@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public enum Type //아이템 종류
 {
@@ -12,6 +13,7 @@ public enum Type //아이템 종류
 }
 public class Item : MonoBehaviour
 {
+    SpriteRenderer render;
     Rigidbody2D rigid;
     public Type type;
     public bool isEat;
@@ -20,6 +22,7 @@ public class Item : MonoBehaviour
     public bool isDrop;
     private void Awake()
     {
+        render = GetComponent<SpriteRenderer>();
         rigid = GetComponent<Rigidbody2D>();
     }
     private void Start()

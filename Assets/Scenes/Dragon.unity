@@ -1936,7 +1936,15 @@ MonoBehaviour:
     PlayerMaxHP: 0
     PlayerStemina: 0
     PlayerMaxStemina: 0
-    Player_pos: {x: 0, y: 0, z: 0}
+    SceneName: 
+    PlayerCity_PlayerPos: {x: 0, y: 0, z: 0}
+    DragonCity_Player_pos: {x: 0, y: 0, z: 0}
+    Health: 0
+    Power: 0
+    Wisdom: 0
+    Speed: 0
+    Intelligence: 0
+    Charm: 0
     QuestIndex: 00000000000000000000000000000000000000000000000000000000
     isQuest_Accept: 00000000000000
     Accept_Quest_Number: 0
@@ -2412,14 +2420,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddff9cfc10e95d0418d0baec09334caa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MainSceneBGIMG: {fileID: 0}
   MainSettingImg: {fileID: 1216975828457050495}
   Player_status: {fileID: 0}
   Quest_Board: {fileID: 0}
+  CurTime: 0
   CurMainSettingTime: 0
   CurMenuTime: 0
   CurPlayerStatusTime: 0
   CurQuestBoardTime: 0
   QuestBorade_BG_IMG: {fileID: 0}
+  MapIMG: {fileID: 0}
+  CurMapTime: 0
 --- !u!1 &1073056377
 GameObject:
   m_ObjectHideFlags: 0
@@ -3645,6 +3657,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64e1ed4a8a0d2114e9341cfb4f2d9e8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CurTime: 0
 --- !u!1 &1655547479
 GameObject:
   m_ObjectHideFlags: 0

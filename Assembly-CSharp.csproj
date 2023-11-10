@@ -65,6 +65,7 @@
     <Compile Include="Assets\Script\Setting\VersionManager.cs" />
     <Compile Include="Assets\Script\Guild\QuestManager.cs" />
     <Compile Include="Assets\Script\Guild\GuildLanguageManager.cs" />
+    <Compile Include="Assets\DIceScript.cs" />
     <Compile Include="Assets\Script\UI_AnimationManager.cs" />
     <Compile Include="Assets\Script\CameraManager.cs" />
     <Compile Include="Assets\Cloud.cs" />
@@ -72,11 +73,15 @@
     <Compile Include="Assets\Script\Item.cs" />
     <Compile Include="Assets\Script\MapManager.cs" />
     <Compile Include="Assets\Script\Setting\SettingButtonManager.cs" />
+    <Compile Include="Assets\Script\Tutorial.cs" />
     <Compile Include="Assets\Script\Inventory\Inventory_Item.cs" />
     <Compile Include="Assets\Script\Inventory\Inventory_Slot.cs" />
+    <Compile Include="Assets\Script\HitEffect.cs" />
     <Compile Include="Assets\Script\Player.cs" />
     <Compile Include="Assets\Script\Dragon\DragonScenePlayerControl.cs" />
     <Compile Include="Assets\Script\Item_Interaction.cs" />
+    <Compile Include="Assets\Script\MapProgress.cs" />
+    <Compile Include="Assets\Script\EnemyAi.cs" />
     <Compile Include="Assets\Script\Setting\LanguageManager.cs" />
     <Compile Include="Assets\Script\LoadingScene.cs" />
   </ItemGroup>

@@ -16,7 +16,6 @@ public class LanguageManager : MonoBehaviour
     [Header("설정화면 버튼")]
     public Text GameSettingBtnText;
     public Text SoundSettingBtnText;
-    public Text GraphicSettingBtnText;
     public Text DevelopersBtnText;
     public Text SettingExitText;
 
@@ -54,7 +53,6 @@ public class LanguageManager : MonoBehaviour
         {
             GameSettingBtnText.text = "게임";
             SoundSettingBtnText.text = "소리";
-            GraphicSettingBtnText.text = "그래픽";
             DevelopersBtnText.text = "개발자";
             SettingExitText.text = "닫기";
         }
@@ -82,7 +80,6 @@ public class LanguageManager : MonoBehaviour
         {
             GameSettingBtnText.text = "GamePlay";
             SoundSettingBtnText.text = "Audio";
-            GraphicSettingBtnText.text = "Graphics";
             DevelopersBtnText.text = "Developers";
             SettingExitText.text = "return";
         }
@@ -110,7 +107,6 @@ public class LanguageManager : MonoBehaviour
         {
             GameSettingBtnText.text = "ゲーム";
             SoundSettingBtnText.text = "音";
-            GraphicSettingBtnText.text = "グラフィック";
             DevelopersBtnText.text = "開発者";
             SettingExitText.text = "閉じる";
         }

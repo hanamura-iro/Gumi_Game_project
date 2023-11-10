@@ -20,12 +20,12 @@ public class GameManager : MonoBehaviour
     }
     public void Menu()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && !isMenu)
+        if (Input.GetKeyDown(KeyCode.Escape) && !isMenu && !QuestManager.Instance.isMap)
         {
             isMenu = true;
             StartCoroutine(UI_AnimationManager.instance.Move_Menu_UI());
         }
-        else if (Input.GetKeyDown(KeyCode.Escape) && isMenu)
+        else if (Input.GetKeyDown(KeyCode.Escape) && isMenu && !QuestManager.Instance.isMap)
         {
             isMenu = false;
             //Time.timeScale = 1;

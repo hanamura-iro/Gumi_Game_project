@@ -8,6 +8,14 @@ TagManager:
   - Rating_Yellow
   - Rating_Green
   - Quest_Board
+  - HouseDoor
+  - injured_person
+  - Pos1
+  - Pos2
+  - Pos3
+  - Pos4
+  - Bea
+  - CloudEndPos
   layers:
   - Default
   - TransparentFX

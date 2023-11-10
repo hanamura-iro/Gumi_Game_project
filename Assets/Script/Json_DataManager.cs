@@ -4,9 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using UnityEngine.SceneManagement;
-using UnityEditor.PackageManager.UI;
-using System.Drawing.Imaging;
-using Unity.VisualScripting;
 
 [Serializable]
 public class Data
@@ -27,6 +24,7 @@ public class Data
     public int PlayerMaxHP;
     public int PlayerStemina;
     public int PlayerMaxStemina;
+    public float PlayerPower;
 
     public string SceneName; //플레이어가 마지막으로 있던 씬
     public Vector3 PlayerCity_PlayerPos;
@@ -34,7 +32,8 @@ public class Data
 
     [Header("플레이어 Ability")]
     public int Health;
-    public int Power;
+    public int MaxHealth;
+    public float Power;
     public int Wisdom;
     public int Speed;
     public int Intelligence;
@@ -79,11 +78,13 @@ public class Json_DataManager : MonoBehaviour
         data.PlayerMaxStemina = 5;
 
         data.SceneName = "PlayerCity";
-        data.PlayerCity_PlayerPos = new Vector3(-12, 1.6f,0f);
+        data.PlayerCity_PlayerPos = new Vector3(-1, 2.6f,0f);
         data.DragonCity_Player_pos = new Vector3(-36f, 1.6f, 0);
 
         data.Health = 10;
+        data.MaxHealth = 10;
         data.Power = 10;
+        data.PlayerPower = 10;
         data.Wisdom = 10;
         data.Speed = 10;
         data.Intelligence = 10;
@@ -146,7 +147,9 @@ public class Json_DataManager : MonoBehaviour
             data.PlayerStemina = Player.Instance.Stemina;
             data.PlayerMaxStemina = Player.Instance.MaxStemina;
 
-            data.SceneName = SceneManager.GetActiveScene().name;
+            if(SceneManager.GetActiveScene().name != "DragonLine")
+                data.SceneName = SceneManager.GetActiveScene().name;
+
             if (SceneManager.GetActiveScene().name == "PlayerCity")
             {
                 data.DragonCity_Player_pos = new Vector3(-36f, 1.6f, 0);
@@ -159,7 +162,9 @@ public class Json_DataManager : MonoBehaviour
             }
 
             data.Health = Player.Instance.Health;
+            data.MaxHealth = Player.Instance.MaxHealth;
             data.Power = Player.Instance.Power;
+            data.PlayerPower = Player.Instance.PlayerPower;
             data.Wisdom = Player.Instance.Wisdom;
             data.Speed = Player.Instance.Speed;
             data.Intelligence = Player.Instance.Intelligence;
@@ -219,7 +224,9 @@ public class Json_DataManager : MonoBehaviour
                 Player.Instance.transform.position = data.DragonCity_Player_pos;
 
             Player.Instance.Health = data.Health;
+            Player.Instance.MaxHealth = data.MaxHealth;
             Player.Instance.Power = data.Power;
+            Player.Instance.PlayerPower = data.PlayerPower;
             Player.Instance.Wisdom = data.Wisdom;
             Player.Instance.Speed = data.Speed;
             Player.Instance.Intelligence = data.Intelligence;

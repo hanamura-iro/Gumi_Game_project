@@ -230,12 +230,47 @@ public class QuestManager : MonoBehaviour
     private void Update()
     {
         Accept_Quest_Number_Text.text = "수락한 퀘스트 개수 : " + Accept_Quest_Number + "개";
+
+        if(isMap && Input.GetKeyDown(KeyCode.Escape))
+        {
+            isMap = false;
+            StartCoroutine(UI_AnimationManager.instance.Move_MapUI());
+        }
     }
     public Image Quest_Re_questionIMG;
     public void Quest_Question()
     {
         Quest_Re_questionIMG.gameObject.SetActive(true);
         isQuestion = true;
+    }
+    public bool isMap;
+    public void MapBtn()
+    {
+        if(!isMap)
+        {
+            isMap = true;
+        }
+        else
+        {
+            isMap = false;
+        }
+        StartCoroutine(UI_AnimationManager.instance.Move_MapUI());
+    }
+    public Image StartBtn;
+    public Sprite[] StartBtnSprite;
+    public void MapStart_Btn()
+    {
+       StartCoroutine(MapStartBtnAni());
+    }
+    IEnumerator MapStartBtnAni()
+    {
+        StartBtn.sprite = StartBtnSprite[1];
+        yield return new WaitForSeconds(0.2f);
+        StartBtn.sprite = StartBtnSprite[0];
+        if(isMapPin)
+        {
+            LoadingScene.LoadScene("DragonLine");
+        }
     }
     public void Close_Quest_Question()
     {
@@ -275,30 +310,7 @@ public class QuestManager : MonoBehaviour
         }
         Quest_Re_questionIMG.gameObject.SetActive(false);
     }
-    //public void Reject_Quest()
-    //{
-    //    QuestItem.color = new Color(1, 1, 1, 0);
-    //    Quest_Cost_Coin = 0;
-    //    QuestItem.sprite = null;
-    //    Quest_Ex_Text.text = "";
 
-    //    for (int i = 0; i < isQuest_Number.Length; i++)
-    //    {
-    //        if (isQuest_Number[i])
-    //        {
-    //            isQuest_Number[i] = false;
-    //        }
-    //        if (QuestIndex[i] >= 1 && isQuest_Accept[i])
-    //        {
-    //            Get_Item(i);
-    //            //QuestIndex[i]--;
-    //            //isQuest_Accept[i] = false;
-    //        }
-    //    }
-    //    GameManager.Instance.Gold += Overlap_Quest_Coin;
-    //    Overlap_Quest_Coin = 0;
-    //    Accept_Quest_Number = 0;
-    //}
     public void Set_Item() //퀘스트 아이템 지급
     {
         if (isQuest_Accept[0])
@@ -352,71 +364,23 @@ public class QuestManager : MonoBehaviour
             }
         }
     }
-    //public void Get_Item(int i)
-    //{
-    //    if (isQuest_Accept[0])
-    //    {
-    //        isQuest_Accept[i] = false;
-    //        if (QuestIndex[0] == 0)
-    //        {
-    //            Destroy(GameObject.Find("Red_potionIMG(Clone)"));
-    //        }
-    //        QuestIndex[i]--;
-    //    }
-    //    if (isQuest_Accept[1])
-    //    {
-    //        isQuest_Accept[i] = false;
-    //        if (QuestIndex[1] == 0)
-    //        {
-    //            Destroy(GameObject.Find("Red_potionIMG(Clone)"));
-    //        }
-    //        QuestIndex[i]--;
-    //    }
-    //    if (isQuest_Accept[2])
-    //    {
-    //        isQuest_Accept[i] = false;
-    //        if (QuestIndex[2] == 0)
-    //        {
-    //            Destroy(GameObject.Find("Red_potionIMG(Clone)"));
-    //        }
-    //        QuestIndex[i]--;
-    //    }
-    //    if (isQuest_Accept[3])
-    //    {
-    //        isQuest_Accept[i] = false;
-    //        if (QuestIndex[3] == 0)
-    //        {
-    //            Destroy(GameObject.Find("Red_potionIMG(Clone)"));
-    //        }
-    //        QuestIndex[i]--;
-    //    }
-    //    if (isQuest_Accept[4])
-    //    {
-    //        isQuest_Accept[i] = false;
-    //        if (QuestIndex[4] == 0)
-    //        {
-    //            Destroy(GameObject.Find("Red_potionIMG(Clone)"));
-    //        }
-    //        QuestIndex[i]--;
-    //    }
-    //    if (isQuest_Accept[5])
-    //    {
-    //        isQuest_Accept[i] = false;
-    //        if (QuestIndex[5] == 0)
-    //        {
-    //            Destroy(GameObject.Find("Red_potionIMG(Clone)"));
-    //        }
-    //        QuestIndex[i]--;
-    //    }
-    //    if (isQuest_Number[6])
-    //    {
-    //        isQuest_Accept[i] = false;
-    //        if (QuestIndex[6] == 0)
-    //        {
-    //            Destroy(GameObject.Find("Red_potionIMG(Clone)"));
-    //        }
-    //        QuestIndex[i]--;
-    //    }
 
-    //}
+    public Image MapPin;
+    public bool isMapPin;
+    public Sprite MapPinSprite;
+    public void MapPinBtn() //드래곤 시티 위치 버튼 - MapBtn
+    {
+        if(!isMapPin)
+        {
+            isMapPin = true;
+            MapPin.sprite = MapPinSprite;
+            MapPin.color = new Color(1, 1, 1, 1);
+        }
+        else if (isMapPin)
+        {
+            isMapPin = false;
+            MapPin.color = new Color(1, 1, 1, 0);
+            MapPin.sprite = null;
+        }
+    }
 }

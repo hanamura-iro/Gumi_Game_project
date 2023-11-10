@@ -16,11 +16,13 @@ public class Player : MonoBehaviour
     public int MaxHP;
     public int Stemina; //기본 5칸
     public int MaxStemina;
+    public float PlayerPower;
 
     [Header("플레이어 Ability")]
-    public int Health;
+    public int Health; //전투 HP
+    public int MaxHealth;
     public Text HealthText;
-    public int Power;
+    public float Power;
     public Text PowerText;
     public int Wisdom;
     public Text WisdomText;
@@ -30,6 +32,8 @@ public class Player : MonoBehaviour
     public Text IntelligenceText;
     public int Charm;
     public Text CharmText;
+
+    public Slider BattleHPBar;
 
     [Header("플레이어의 돈")]
     public int Gold;
@@ -42,6 +46,9 @@ public class Player : MonoBehaviour
     public Text Stemina_Text;
 
     public bool isInventory;
+
+    public bool isStory;
+    public bool isTutorial;
     private void Awake()
     {
         Instance = this;
@@ -60,7 +67,10 @@ public class Player : MonoBehaviour
         Gold_Text.text = Gold.ToString("N0");
         if(QuestManager.Instance.Quest_Name.Count >= 1)
             Quest_Text.text = QuestManager.Instance.Quest_Name[QuestIndex] + "\n" + QuestManager.Instance.Quest_Ex[QuestIndex];
-        if (!GameManager.Instance.isMenu)
+
+        if (isBattle)
+            BattleHPBar.value = Health;
+        if (!GameManager.Instance.isMenu && !isBattle && !isStory)
         {
             Move();
             Run();
@@ -68,21 +78,7 @@ public class Player : MonoBehaviour
         Player_Status();
         AbilityText();
         Player_H_S_UI();
-        #region 게임 낼 때 지워야 할 것
-        if (Input.GetKeyDown(KeyCode.Q) && Hp > 0)
-        {
-            Hp--;
-            Stemina--;
-        }
-        if (Input.GetKeyDown(KeyCode.E) && Hp < 6)
-        {
-            Hp++;
-            Stemina++;
-        }
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            MaxHP++;
-        }
+        #region 지워야 할 것
         if (Input.GetKeyDown(KeyCode.V))
         {
             Json_DataManager.instance.ResetDataToJson();
@@ -120,18 +116,27 @@ public class Player : MonoBehaviour
         if (Input.GetKey(KeyCode.A))
         {
             transform.position += Vector3.left * movePower * Time.deltaTime;
-            ani.SetBool("Walk",true);
-            transform.localScale = new Vector3(-1, 1, 1);
+            if(ani != null)
+                ani.SetBool("Walk",true);
+            if(SceneManager.GetActiveScene().name != "DragonLine")
+                transform.localScale = new Vector3(-1, 1, 1);
+            if (SceneManager.GetActiveScene().name == "DragonLine")
+                transform.localScale = new Vector3(1, 1, 1);
         }
         else if (Input.GetKey(KeyCode.D))
         {
             transform.position += Vector3.right * movePower * Time.deltaTime;
-            transform.localScale = new Vector3(1, 1, 1);
-            ani.SetBool("Walk", true);
+            if (SceneManager.GetActiveScene().name != "DragonLine")
+                transform.localScale = new Vector3(1, 1, 1);
+            if (SceneManager.GetActiveScene().name == "DragonLine")
+                transform.localScale = new Vector3(-1, 1, 1);
+            if (ani != null)
+                ani.SetBool("Walk", true);
         }
         else 
         {
-            ani.SetBool("Walk", false);
+            if (ani != null)
+                ani.SetBool("Walk", false);
         }
     }
     void Run()
@@ -139,17 +144,19 @@ public class Player : MonoBehaviour
         if(Input.GetKey(KeyCode.LeftShift))
         {
             movePower = 9;
-            ani.SetFloat("WalkSpeed", 2);
+            if(SceneManager.GetActiveScene().name != "DragonLine")
+                ani.SetFloat("WalkSpeed", 2);
         }
         else
         {
             movePower = 3;
-            ani.SetFloat("WalkSpeed", 1);
+            if (SceneManager.GetActiveScene().name != "DragonLine")
+                ani.SetFloat("WalkSpeed", 1);
         }
     }
     void Player_Status() //플레이어 체력,스테미나,인벤토리 UI
     {
-        if(!isInventory && Input.GetKeyDown(KeyCode.Tab))
+        if(!isInventory && Input.GetKeyDown(KeyCode.Tab) && !Player_Interaction.instance.isInHouse)
         {
             isInventory = true;
             StartCoroutine(UI_AnimationManager.instance.Move_Player_StatusUI());
@@ -290,9 +297,62 @@ public class Player : MonoBehaviour
             //t = Mathf.Sin(t * Mathf.PI * 0.5f);
 
             if (isInventory)
-                cam.transform.position = Vector2.Lerp(new Vector2(cam.transform.position.x, 4.2f), new Vector2(cam.transform.position.x, 1.4f), CurCmaeraTime);
+            {
+                if(SceneManager.GetActiveScene().name != "DragonLine")
+                {
+                    cam.transform.position = Vector3.Lerp(new Vector3(cam.transform.position.x, 4.2f,-8f), new Vector3(cam.transform.position.x, 1.4f,-8), CurCmaeraTime);
+                }
+            }
             else if (!isInventory)
-                cam.transform.position = Vector2.Lerp(new Vector2(cam.transform.position.x, 1.4f), new Vector2(cam.transform.position.x, 4.2f), CurCmaeraTime);
+            {
+                if (SceneManager.GetActiveScene().name != "DragonLine")
+                {
+                    cam.transform.position = Vector3.Lerp(new Vector3(cam.transform.position.x, 1.4f,-8f), new Vector3(cam.transform.position.x, 4.2f,-8), CurCmaeraTime);
+                }
+            }
         }
+    }
+    public bool isBattle;
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.CompareTag("Bea"))
+        {
+            Debug.Log("배핑크스 영역 입장");
+            isBattle = true;
+            ani.SetBool("Walk", false);
+            Tutorial.Instance.TextIndex = 12;
+            CameraManager.Instance.EnemyPos = collision.gameObject.transform;
+            StartCoroutine(CameraManager.Instance.Move_BattleCamera());
+        }
+    }
+    public float CurAttackAniTime;
+    public float AttackTime = 0.005f;
+    public float PosX;
+    public IEnumerator GoAttackAni()
+    {
+        yield return new WaitForSeconds(1f);
+        PosX = transform.position.x;
+        CurAttackAniTime = 0f;
+        while (CurAttackAniTime < 1)
+        {
+            CurAttackAniTime += AttackTime;
+            yield return new WaitForSeconds(0.001f);
+            transform.position = Vector3.Lerp(new Vector3(transform.position.x, transform.position.y, 0), new Vector3(EnemyAi.instance.transform.position.x - 1, transform.position.y, 0), CurAttackAniTime);         
+        }
+        EnemyAi.instance.HP -= Power;
+        Instantiate(DIceScript.instance.HitEffect,new Vector2(EnemyAi.instance.transform.position.x,EnemyAi.instance.transform.position.y),Quaternion.identity);
+        DIceScript.instance.HitEffect.transform.localScale = new Vector3(-1, 1, 1);
+        StartCoroutine(BackAttackAni());
+    }
+    IEnumerator BackAttackAni()
+    {
+        CurAttackAniTime = 0f;
+        while (CurAttackAniTime < 1)
+        {
+            CurAttackAniTime += AttackTime;
+            yield return new WaitForSeconds(0.001f);
+            transform.position = Vector3.Lerp(new Vector3(transform.position.x, transform.position.y, 0),new Vector3(PosX,transform.position.y,0),CurAttackAniTime);
+        }
+        StartCoroutine(EnemyAi.instance.GoAttackAni());
     }
 }

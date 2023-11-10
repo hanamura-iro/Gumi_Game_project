@@ -18,7 +18,7 @@ public class MapManager : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
         Debug.Log("OnPointerExit");
         isOnPointerEnter = false;
     }
-    public Image Map_IMG;
+    public GameObject Map_IMG;
     private void Update()
     {
         if(isOnPointerEnter)

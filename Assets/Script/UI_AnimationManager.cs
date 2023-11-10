@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class UI_AnimationManager : MonoBehaviour
 {
     public static UI_AnimationManager instance;
 
+    public Image MainSceneBGIMG;
     public Image MainSettingImg;
     public Image Player_status;
     public GameObject Quest_Board;
@@ -16,6 +18,24 @@ public class UI_AnimationManager : MonoBehaviour
     }
 
     #region 시작화면
+    public float CurTime;
+    public IEnumerator Move_BG()
+    {
+        CurTime = 0f;
+        while (CurTime < 1)
+        {
+            CurTime += 0.007f;
+            yield return new WaitForSeconds(0.001f);
+            //float t = CurMainSettingTime / 1;
+            //t = Mathf.Sin(t * Mathf.PI * 0.5f);
+
+            MainSceneBGIMG.transform.localPosition = Vector2.Lerp(new Vector2(0, 0), new Vector2(0, 1200), CurTime);
+            if(CurTime >= 1)
+            {
+                SceneManager.LoadScene(Json_DataManager.instance.data.SceneName);
+            }
+        }
+    }
     public float CurMainSettingTime;
     public IEnumerator Move_SettingUI()
     {
@@ -100,6 +120,25 @@ public class UI_AnimationManager : MonoBehaviour
                     QuestBorade_BG_IMG.gameObject.SetActive(false);
                 }
             }
+        }
+    }
+
+    public Image MapIMG;
+    public float CurMapTime;
+    public IEnumerator Move_MapUI()
+    {
+        CurMapTime = 0f;
+        while (CurMapTime < 1)
+        {
+            CurMapTime += 0.03f;
+            yield return new WaitForSeconds(0.001f);
+            //float t = CurPlayerStatusTime / 1;
+            //t = Mathf.Sin(t * Mathf.PI * 0.5f);
+
+            if (QuestManager.Instance.isMap)
+                MapIMG.transform.localPosition = Vector2.Lerp(new Vector2(0, -1200), new Vector2(0, 0), CurMapTime);
+            if (!QuestManager.Instance.isMap)
+                MapIMG.transform.localPosition = Vector2.Lerp(new Vector2(0, 0), new Vector2(0, -1200), CurMapTime);
         }
     }
     #endregion
